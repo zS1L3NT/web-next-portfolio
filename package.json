@@ -1,0 +1,20 @@
+{
+	"name": "www",
+	"version": "1.0.0",
+	"main": "app.js",
+	"description": "Responsive portfolio website",
+	"scripts": {
+		"start": "node app",
+		"sass": "npx node-sass -w scss/ -o dist/css/ --recursive",
+		"app": "nodemon app"
+	},
+	"author": "zS1L3NT",
+	"license": "MIT",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"node-sass": "^5.0.0",
+		"nodemon": "^2.0.4"
+	}
+}
