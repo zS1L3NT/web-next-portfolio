@@ -1,0 +1,179 @@
+@import "~include-media/dist/_include-media.scss";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body, #root {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+main {
+	display: flex;
+	flex-direction: row;
+}
+
+@font-face {
+	font-family: NotoSans;
+	src: url(assets/fonts/notosans-regular.otf);
+}
+
+.profile {
+	width: 300px;
+	padding: 3rem;
+	border-radius: 0;
+	box-shadow: 0 0 0 0 black;
+
+	&__image {
+		width: 0;
+		height: 0;
+		opacity: 0;
+		display: block;
+		border-radius: 50%;
+		margin: 0 auto;
+
+		@include media("<=tablet") {
+			width: 80%;
+		}
+
+		@include media(">tablet") {
+			width: 300px;
+		}
+
+		/* Animation 1 */
+		@keyframes animation-1 {
+			from {
+				width: 0;
+				height: 0;
+				opacity: 0;
+			}
+			to {
+				width: 300px;
+				height: 300px;
+				opacity: 1;
+			}
+		}
+
+		&.animate-1 {
+			animation: animation-1 2s;
+		}
+
+		&.state-1 {
+			width: 300px;
+			height: 300px;
+			opacity: 1;
+		}
+
+		/* Animation 2 */
+		@keyframes animation-2 {
+			from {
+				border-radius: 50%;
+			}
+			to {
+				border-radius: 20%;
+			}
+		}
+
+		&.animate-2 {
+			animation: animation-2 1s;
+		}
+
+		&.state-2 {
+			border-radius: 20%;
+		}
+	}
+
+	&__name {
+		margin-top: 1rem;
+		font-family: NotoSans, serif;
+		text-align: center;
+		font-size: 0;
+
+		/* Animation 3 */
+		@keyframes animation-3 {
+			from {
+				font-size: 0;
+			}
+			to {
+				font-size: 32px;
+			}
+		}
+
+		&.animate-3 {
+			animation: animation-3 1s;
+		}
+
+		&.state-3 {
+			font-size: 32px;
+		}
+	}
+
+	&__redirecting {
+		font-family: NotoSans, serif;
+		text-align: center;
+		font-size: 0;
+
+		/* Animation 4 */
+		@keyframes animation-4 {
+			from {
+				font-size: 0;
+			}
+			to {
+				font-size: 16px;
+			}
+		}
+
+		&.animate-4 {
+			animation: animation-4 1s;
+		}
+
+		&.state-4 {
+			font-size: 16px;
+		}
+	}
+
+	/* Animation 5 */
+	@keyframes animation-5 {
+		 from {
+			 box-shadow: 0 0 0 0 black;
+		 }
+		 to {
+			 box-shadow: 0 0 8px -4px black;
+		 }
+	 }
+
+	&.animate-5 {
+		animation: animation-5 1s;
+	}
+
+	&.state-5 {
+		box-shadow: 0 0 8px -4px black;
+	}
+
+	/* Animation 6 */
+	@keyframes animation-6 {
+		from {
+			border-radius: 0;
+		}
+		to {
+			border-radius: 40px;
+		}
+	}
+
+	&.animate-6 {
+		animation: animation-6 1s;
+	}
+
+	&.state-6 {
+		border-radius: 40px;
+	}
+}
