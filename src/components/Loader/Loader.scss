@@ -29,8 +29,8 @@
 		}
 	}
 
-	/* Animation 7 */
-	@keyframes animation-7 {
+	/* Animation loading */
+	@keyframes animation-loading {
 		 from {
 			 height: 0;
 			 opacity: 0;
@@ -41,11 +41,11 @@
 		 }
 	 }
 
-	&.animate-7 {
-		animation: animation-7 2s forwards;
+	&.animate-loading {
+		animation: animation-loading 2s forwards;
 	}
 
-	&.state-7 {
+	&.state-loading {
 		height: 60px;
 		opacity: 1;
 	}

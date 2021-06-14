@@ -9,16 +9,16 @@ export default function App() {
 	const [animation, setAnimation] = useState<string[]>([])
 
 	useEffect(() => {
-		Animator("1", 0, 2000, setAnimation)
-		Animator("2", 2000, 1000, setAnimation)
-		Animator("3", 3000, 1000, setAnimation)
-		Animator("4", 4000, 1000, setAnimation)
-		Animator("5", 5000, 1000, setAnimation)
-		Animator("6", 6000, 1000, setAnimation)
-		Animator("7", 7000, 2000, setAnimation)
+		Animator("image-scale", 0, 2000, setAnimation)
+		Animator("image-radius", 2000, 1000, setAnimation)
+		Animator("name", 3000, 1000, setAnimation)
+		Animator("materialize", 3000, 1000, setAnimation)
+		Animator("redirecting", 4000, 1000, setAnimation)
+		Animator("materialize-radius", 4000, 1000, setAnimation)
+		Animator("loading", 5000, 2000, setAnimation)
 		setTimeout(() => {
 			window.location.href = "https://www.github.com/zS1L3NT"
-		}, 10000)
+		}, 8000)
 	}, [])
 
 	return (

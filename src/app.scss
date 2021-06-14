@@ -28,10 +28,17 @@ main {
 }
 
 .profile {
-	width: 300px;
 	padding: 3rem;
 	border-radius: 0;
 	box-shadow: 0 0 0 0 black;
+
+	@include media("<=tablet") {
+		width: 200px;
+	}
+
+	@include media(">tablet") {
+		width: 300px;
+	}
 
 	&__image {
 		width: 0;
@@ -41,16 +48,21 @@ main {
 		border-radius: 50%;
 		margin: 0 auto;
 
-		@include media("<=tablet") {
-			width: 80%;
+		/* Animation image scale */
+		@keyframes animation-image-scale-mobile {
+			from {
+				width: 0;
+				height: 0;
+				opacity: 0;
+			}
+			to {
+				width: 200px;
+				height: 200px;
+				opacity: 1;
+			}
 		}
 
-		@include media(">tablet") {
-			width: 300px;
-		}
-
-		/* Animation 1 */
-		@keyframes animation-1 {
+		@keyframes animation-image-scale-desktop {
 			from {
 				width: 0;
 				height: 0;
@@ -63,18 +75,32 @@ main {
 			}
 		}
 
-		&.animate-1 {
-			animation: animation-1 2s;
+		&.animate-image-scale {
+			@include media("<=tablet") {
+				animation: animation-image-scale-mobile 2s;
+			}
+
+			@include media(">tablet") {
+				animation: animation-image-scale-desktop 2s;
+			}
 		}
 
-		&.state-1 {
-			width: 300px;
-			height: 300px;
-			opacity: 1;
+		&.state-image-scale {
+			@include media("<=tablet") {
+				width: 200px;
+				height: 200px;
+				opacity: 1;
+			}
+
+			@include media(">tablet") {
+				width: 300px;
+				height: 300px;
+				opacity: 1;
+			}
 		}
 
-		/* Animation 2 */
-		@keyframes animation-2 {
+		/* Animation image radius */
+		@keyframes animation-image-radius {
 			from {
 				border-radius: 50%;
 			}
@@ -83,11 +109,11 @@ main {
 			}
 		}
 
-		&.animate-2 {
-			animation: animation-2 1s;
+		&.animate-image-radius {
+			animation: animation-image-radius 1s;
 		}
 
-		&.state-2 {
+		&.state-image-radius {
 			border-radius: 20%;
 		}
 	}
@@ -98,8 +124,17 @@ main {
 		text-align: center;
 		font-size: 0;
 
-		/* Animation 3 */
-		@keyframes animation-3 {
+		/* Animation name */
+		@keyframes animation-name-mobile {
+			from {
+				font-size: 0;
+			}
+			to {
+				font-size: 24px;
+			}
+		}
+
+		@keyframes animation-name-desktop {
 			from {
 				font-size: 0;
 			}
@@ -108,12 +143,24 @@ main {
 			}
 		}
 
-		&.animate-3 {
-			animation: animation-3 1s;
+		&.animate-name {
+			@include media("<=tablet") {
+				animation: animation-name-mobile 1s;
+			}
+
+			@include media(">tablet") {
+				animation: animation-name-desktop 1s;
+			}
 		}
 
-		&.state-3 {
-			font-size: 32px;
+		&.state-name {
+			@include media("<=tablet") {
+				font-size: 24px;
+			}
+
+			@include media(">tablet") {
+				font-size: 32px;
+			}
 		}
 	}
 
@@ -122,8 +169,17 @@ main {
 		text-align: center;
 		font-size: 0;
 
-		/* Animation 4 */
-		@keyframes animation-4 {
+		/* Animation redirecting */
+		@keyframes animation-redirecting-mobile {
+			from {
+				font-size: 0;
+			}
+			to {
+				font-size: 12px;
+			}
+		}
+
+		@keyframes animation-redirecting-desktop {
 			from {
 				font-size: 0;
 			}
@@ -132,35 +188,47 @@ main {
 			}
 		}
 
-		&.animate-4 {
-			animation: animation-4 1s;
+		&.animate-redirecting {
+			@include media("<=tablet") {
+				animation: animation-redirecting-mobile 1s;
+			}
+
+			@include media(">tablet") {
+				animation: animation-redirecting-desktop 1s;
+			}
 		}
 
-		&.state-4 {
-			font-size: 16px;
+		&.state-redirecting {
+			@include media("<=tablet") {
+				font-size: 12px;
+			}
+
+			@include media(">tablet") {
+				font-size: 16px;
+			}
 		}
 	}
 
-	/* Animation 5 */
-	@keyframes animation-5 {
-		 from {
-			 box-shadow: 0 0 0 0 black;
-		 }
-		 to {
-			 box-shadow: 0 0 8px -4px black;
-		 }
-	 }
-
-	&.animate-5 {
-		animation: animation-5 1s;
+	/* Animation materialize */
+	@keyframes animation-materialize {
+		from {
+			box-shadow: 0 0 0 0 black;
+		}
+		to {
+			box-shadow: 0 0 8px -4px black;
+		}
 	}
 
-	&.state-5 {
+	&.animate-materialize {
+		animation: animation-materialize 1s;
+	}
+
+	&.state-materialize {
 		box-shadow: 0 0 8px -4px black;
 	}
 
-	/* Animation 6 */
-	@keyframes animation-6 {
+	/* Animation materialize radius */
+	@keyframes animation-materialize-radius {
 		from {
 			border-radius: 0;
 		}
@@ -169,11 +237,11 @@ main {
 		}
 	}
 
-	&.animate-6 {
-		animation: animation-6 1s;
+	&.animate-materialize-radius {
+		animation: animation-materialize-radius 1s;
 	}
 
-	&.state-6 {
+	&.state-materialize-radius {
 		border-radius: 40px;
 	}
 }
