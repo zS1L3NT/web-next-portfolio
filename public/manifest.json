@@ -3,13 +3,19 @@
 	"short_name": "Zechariah Tan",
 	"icons": [
 		{
-			"src": "favicon.ico",
+			"src": "/favicon.ico",
 			"sizes": "396x396",
 			"type": "image/x-icon",
-			"purpose": "any maskable"
+			"purpose": "any"
 		},
 		{
-			"src": "assets/profile.png",
+			"src": "/favicon.ico",
+			"sizes": "396x396",
+			"type": "image/x-icon",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/assets/images/profile.jpg",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
