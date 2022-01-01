@@ -13,6 +13,19 @@ module.exports = {
 			},
 			spacing: {
 				18: "4.5rem"
+			},
+			keyframes: {
+				"cursor-blink": {
+					"from, to": {
+						color: "transparent"
+					},
+					"50%": {
+						color: "white"
+					}
+				}
+			},
+			animation: {
+				"cursor-blink": "cursor-blink 1s infinite"
 			}
 		},
 		fontFamily: {

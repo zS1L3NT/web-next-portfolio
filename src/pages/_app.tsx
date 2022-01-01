@@ -1,9 +1,9 @@
-import { AppProps } from "next/app"
 import Head from "next/head"
+import { AppProps } from "next/app"
 import "tailwindcss/tailwind.css"
 import "../styles/globals.scss"
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
 	return (
 		<>
 			<Head>
