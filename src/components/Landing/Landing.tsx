@@ -32,7 +32,7 @@ const Landing: React.FC = () => {
 					</motion.div>
 				) : null}
 			</AnimatePresence>
-			<Center className="text-center">
+			<Center className="xs:mx-2 sm:mx-1 text-center">
 				<h1 className="xs:text-3xl sm:text-4xl md:text-6xl text-white font-montserrat-regular">
 					Hello, I&apos;m <span className="text-secondary">Zechariah Tan</span>
 				</h1>
