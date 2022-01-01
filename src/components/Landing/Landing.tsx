@@ -34,7 +34,7 @@ const Landing: React.FC = () => {
 			</AnimatePresence>
 			<Center className="text-center">
 				<h1 className="xs:text-3xl sm:text-4xl md:text-6xl text-white font-montserrat-regular">
-					Hello, I'm <span className="text-secondary">Zechariah Tan</span>
+					Hello, I&apos;m <span className="text-secondary">Zechariah Tan</span>
 				</h1>
 				<Typewriter />
 
