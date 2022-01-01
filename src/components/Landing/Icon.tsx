@@ -21,7 +21,7 @@ const Icon: React.FC<Props> = (props: Props) => {
 		linkedin: (
 			<a
 				className="block z-0"
-				href="https://www.linkedin.com/in/zechariah-tan"
+				href="https://www.linkedin.com/in/zechariah-sg"
 				target="_blank"
 				rel="noreferrer">
 				<svg className={className} viewBox="0 0 80 80">
