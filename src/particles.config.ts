@@ -9,7 +9,7 @@ export default {
 		},
 		color: {
 			value: "#ccd6f6",
-			opaciity: 0.5
+			opacity: 0.5
 		},
 		shape: {
 			type: "circle",
