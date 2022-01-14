@@ -4,36 +4,21 @@ import Particles from "react-tsparticles"
 import ParticlesConfig from "../../particles.config"
 import Typewriter from "./Typewriter"
 import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState } from "react"
 
 const Landing: React.FC = () => {
-	//#region Hooks
-	const [showBackground, setShowBackground] = useState(false)
-	//#endregion
-
-	//#region Effects
-	useEffect(() => {
-		setTimeout(() => {
-			setShowBackground(true)
-		}, 1000)
-	}, [])
-	//#endregion
-
 	return (
-		<section className="w-full h-full">
+		<section className="w-full h-full bg-bgcolor">
 			<AnimatePresence>
-				{showBackground ? (
-					<motion.div
-						transition={{ duration: 3 }}
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}>
-						<Particles params={ParticlesConfig} />
-					</motion.div>
-				) : null}
+				<motion.div
+					transition={{ duration: 3 }}
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}>
+					<Particles params={ParticlesConfig} />
+				</motion.div>
 			</AnimatePresence>
 			<Center className="xs:mx-2 sm:mx-1 text-center">
-				<h1 className="xs:text-3xl sm:text-4xl md:text-6xl text-white font-montserrat-regular">
+				<h1 className="xs:text-3xl sm:text-4xl md:text-6xl text-white font-montserrat-regular select-none">
 					Hello, I&apos;m <span className="text-secondary">Zechariah Tan</span>
 				</h1>
 				<Typewriter />

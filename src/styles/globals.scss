@@ -8,10 +8,6 @@ body,
 	@apply w-full h-full;
 }
 
-body {
-	@apply bg-bgcolor;
-}
-
 @font-face {
 	font-family: Montserrat-Bold;
 	src: url(/assets/fonts/Montserrat-Bold.ttf);
