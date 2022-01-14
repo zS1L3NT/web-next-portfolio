@@ -17,24 +17,24 @@ const Landing: React.FC = () => {
 					<Particles params={ParticlesConfig} />
 				</motion.div>
 			</AnimatePresence>
-			<Center className="xs:mx-2 sm:mx-1 text-center">
-				<h1 className="xs:text-3xl sm:text-4xl md:text-6xl text-white font-montserrat-regular select-none">
+			<Center className="text-center xs:mx-2 sm:mx-1">
+				<h1 className="text-white select-none xs:text-3xl sm:text-4xl md:text-6xl font-montserrat-regular">
 					Hello, I&apos;m <span className="text-secondary">Zechariah Tan</span>
 				</h1>
 				<Typewriter />
 
-				<Center className="xs:mt-8 sm:mt-12 md:mt-16 flex w-fit">
+				<Center className="flex xs:mt-8 sm:mt-12 md:mt-16 w-fit">
 					<Icon
 						icon="github"
-						className="xs:mx-2 xs:w-12 xs:h-12 sm:mx-3 sm:w-14 sm:h-14 md:mx-4 md:w-16 md:h-16 my-1 p-1"
+						className="p-1 my-1 xs:mx-2 xs:w-12 xs:h-12 sm:mx-3 sm:w-14 sm:h-14 md:mx-4 md:w-16 md:h-16"
 					/>
 					<Icon
 						icon="linkedin"
-						className="xs:mx-2 xs:w-14 xs:h-14 sm:mx-3 sm:w-16 sm:h-16 md:mx-4 md:w-18 md:h-18 p-1"
+						className="p-1 xs:mx-2 xs:w-14 xs:h-14 sm:mx-3 sm:w-16 sm:h-16 md:mx-4 md:w-18 md:h-18"
 					/>
 					<Icon
 						icon="stackoverflow"
-						className="xs:mx-2 xs:w-12 xs:h-12 sm:mx-3 sm:w-14 sm:h-14 md:mx-4 md:w-16 md:h-16 my-1 p-1"
+						className="p-1 my-1 xs:mx-2 xs:w-12 xs:h-12 sm:mx-3 sm:w-14 sm:h-14 md:mx-4 md:w-16 md:h-16"
 					/>
 				</Center>
 			</Center>

@@ -9,7 +9,7 @@ const Icon: React.FC<Props> = (props: Props) => {
 	return {
 		github: (
 			<a
-				className="block z-0"
+				className="z-0 block"
 				href="https://www.github.com/zS1L3NT"
 				target="_blank"
 				rel="noreferrer">
@@ -20,7 +20,7 @@ const Icon: React.FC<Props> = (props: Props) => {
 		),
 		linkedin: (
 			<a
-				className="block z-0"
+				className="z-0 block"
 				href="https://www.linkedin.com/in/zechariah-sg"
 				target="_blank"
 				rel="noreferrer">
@@ -31,7 +31,7 @@ const Icon: React.FC<Props> = (props: Props) => {
 		),
 		stackoverflow: (
 			<a
-				className="block z-0"
+				className="z-0 block"
 				href="https://www.stackoverflow.com/users/7544646/zs1l3nt"
 				target="_blank"
 				rel="noreferrer">

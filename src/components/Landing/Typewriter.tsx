@@ -49,7 +49,7 @@ const Typewriter = () => {
 	//#endregion
 
 	return (
-		<h1 className="sm:mt-2 md:mt-4 xs:text-3xl sm:text-4xl md:text-6xl w-fit flex mx-auto text-white font-montserrat-regular select-none">
+		<h1 className="flex mx-auto text-white select-none sm:mt-2 md:mt-4 xs:text-3xl sm:text-4xl md:text-6xl w-fit font-montserrat-regular">
 			<div>
 				{message.split("").map((letter, i) => (
 					<span key={i}>{letter}</span>
