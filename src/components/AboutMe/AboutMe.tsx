@@ -15,8 +15,8 @@ const AboutMe: React.FC<Props> = (props: Props) => {
 				About Me
 			</h1>
 			<div className="container flex flex-col mx-auto md:py-14 xs:px-8 xs:py-6 sm:px-6 sm:py-9 md:px-4 lg:flex-row">
-				<div className="flex items-start justify-center flex-1 mb-12 lg:mb-0 lg:items-center">
-					<div className="relative xs:w-52 xs:h-52 sm:w-56 sm:h-56 md:w-60 md:h-60 lg:w-64 lg:h-64">
+				<div className="flex items-start justify-center flex-1 xs:mb-6 sm:mb-9 md:mb-12 lg:mb-0 lg:items-center">
+					<div className="relative xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
 						<Image
 							className="rounded-full"
 							src="/assets/images/profile.jpg"
