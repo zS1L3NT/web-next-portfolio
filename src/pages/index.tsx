@@ -1,8 +1,34 @@
+import AboutMe from "../components/AboutMe/AboutMe"
+import config from "../config.json"
 import Landing from "../components/Landing/Landing"
-import { NextPage } from "next"
+import { collection, doc, getDoc } from "firebase/firestore"
+import { firestore } from "../firebase"
+import { GetStaticProps, NextPage } from "next"
+import { StrictMode } from "react"
 
-const Home: NextPage = () => {
-	return <Landing />
+interface Props {
+	"about-me": {
+		paragraphs: string[]
+	}
+}
+
+const Home: NextPage<Props> = (props: Props) => {
+	return (
+		<StrictMode>
+			<Landing />
+			<AboutMe about-me={props["about-me"]} />
+		</StrictMode>
+	)
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+	const dataRef = collection(firestore, config.firebase.collection)
+
+	return {
+		props: {
+			"about-me": await (await getDoc(doc(dataRef, "about-me"))).data()
+		} as Props
+	}
 }
 
 export default Home

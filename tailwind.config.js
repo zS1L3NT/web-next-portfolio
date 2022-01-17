@@ -8,8 +8,7 @@ module.exports = {
 				"primary-dark": "#8892b0",
 				"primary-light": "#d2daf6",
 				secondary: "#1de9b6",
-				"secondary-dark": "#00b686",
-				white: "#eee"
+				"secondary-dark": "#00b686"
 			},
 			spacing: {
 				18: "4.5rem"
@@ -26,6 +25,9 @@ module.exports = {
 			},
 			animation: {
 				"cursor-blink": "cursor-blink 1s infinite"
+			},
+			flex: {
+				"2": "2 1 0%"
 			}
 		},
 		fontFamily: {
