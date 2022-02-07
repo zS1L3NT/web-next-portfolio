@@ -1,4 +1,4 @@
-# My Portfilio
+# My Portfolio
 
 ![License](https://img.shields.io/github/license/zS1L3NT/web-next-portfolio?style=for-the-badge) ![Languages](https://img.shields.io/github/languages/count/zS1L3NT/web-next-portfolio?style=for-the-badge) ![Top Language](https://img.shields.io/github/languages/top/zS1L3NT/web-next-portfolio?style=for-the-badge) ![Commit Activity](https://img.shields.io/github/commit-activity/y/zS1L3NT/web-next-portfolio?style=for-the-badge) ![Last commit](https://img.shields.io/github/last-commit/zS1L3NT/web-next-portfolio?style=for-the-badge)
 
