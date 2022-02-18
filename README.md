@@ -21,6 +21,7 @@ This is the third edition of my portfolio website available [here](https://www.z
     -   [![next-pwa](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/next-pwa?style=flat-square)](https://npmjs.com/package/next-pwa)
     -   [![react](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/react?style=flat-square)](https://npmjs.com/package/react)
     -   [![react-dom](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/react-dom?style=flat-square)](https://npmjs.com/package/react-dom)
+    -   [![sharp](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/sharp?style=flat-square)](https://npmjs.com/package/sharp)
 -   For Design
     -   [![framer-motion](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/framer-motion?style=flat-square)](https://npmjs.com/package/framer-motion)
     -   [![sass](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/sass?style=flat-square)](https://npmjs.com/package/sass)
