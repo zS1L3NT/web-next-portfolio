@@ -1,5 +1,4 @@
 import AboutMe from "../components/AboutMe/AboutMe"
-import config from "../config.json"
 import Landing from "../components/Landing/Landing"
 import { collection, doc, getDoc } from "firebase/firestore"
 import { firestore } from "../firebase"
@@ -22,7 +21,7 @@ const Home: NextPage<Props> = (props: Props) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-	const dataRef = collection(firestore, config.firebase.collection)
+	const dataRef = collection(firestore, process.env.FIREBASE__COLLECTION)
 
 	return {
 		props: {

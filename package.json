@@ -1,11 +1,12 @@
 {
 	"name": "web-next-portfolio",
-	"private": true,
+	"description": "My Portfolio Website",
+	"author": "",
+	"license": "GPL-3.0",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
+		"start": "next start"
 	},
 	"dependencies": {
 		"firebase": "^9.6.3",
