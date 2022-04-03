@@ -6,28 +6,27 @@ This is the third edition of my portfolio website available [here](https://www.z
 
 ## Features
 
--   Progressive Web Application
 -   Advanced Mobile Responsivity
 -   Typewriter Effect
 
 ## Built with
 
 -   TypeScript
-    -   [![@types/node](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/@types/node?style=flat-square)](https://npmjs.com/package/@types/node)
     -   [![@types/react](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/@types/react?style=flat-square)](https://npmjs.com/package/@types/react)
+    -   [![@types/react-dom](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/@types/react-dom?style=flat-square)](https://npmjs.com/package/@types/react-dom)
     -   [![typescript](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/typescript?style=flat-square)](https://npmjs.com/package/typescript)
--   NextJS
-    -   [![next](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/next?style=flat-square)](https://npmjs.com/package/next)
-    -   [![next-pwa](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/next-pwa?style=flat-square)](https://npmjs.com/package/next-pwa)
+-   Vite
+    -   [![@vitejs/plugin-react](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/@vitejs/plugin-react?style=flat-square)](https://npmjs.com/package/@vitejs/plugin-react)
+    -   [![vite](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/vite?style=flat-square)](https://npmjs.com/package/vite)
+-   React
     -   [![react](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/react?style=flat-square)](https://npmjs.com/package/react)
     -   [![react-dom](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/react-dom?style=flat-square)](https://npmjs.com/package/react-dom)
-    -   [![sharp](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/sharp?style=flat-square)](https://npmjs.com/package/sharp)
+    -   [![react-tsparticles](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/react-tsparticles?style=flat-square)](https://npmjs.com/package/react-tsparticles)
 -   For Design
     -   [![framer-motion](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/framer-motion?style=flat-square)](https://npmjs.com/package/framer-motion)
     -   [![sass](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/sass?style=flat-square)](https://npmjs.com/package/sass)
     -   [![autoprefixer](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/autoprefixer?style=flat-square)](https://npmjs.com/package/autoprefixer)
+    -   [![postcss](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/postcss?style=flat-square)](https://npmjs.com/package/postcss)
     -   [![tailwindcss](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/dev/tailwindcss?style=flat-square)](https://npmjs.com/package/tailwindcss)
-    -   [![postcss](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/peer/postcss?style=flat-square)](https://npmjs.com/package/postcss)
 -   Miscellaneous
     -   [![firebase](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/firebase?style=flat-square)](https://npmjs.com/package/firebase)
-    -   [![react-tsparticles](https://img.shields.io/github/package-json/dependency-version/zS1L3NT/web-next-portfolio/react-tsparticles?style=flat-square)](https://npmjs.com/package/react-tsparticles)
