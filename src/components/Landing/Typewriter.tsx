@@ -14,10 +14,14 @@ const Typewriter = () => {
 			"student from Temasek Poly"
 		]
 
+		let cancelled = false
 		time(1000).then(async () => {
+			if (cancelled) return
+
 			for (const letter of "and I'm a ") {
 				setMessage(message => message + letter)
 				await time(80)
+				if (cancelled) return
 			}
 
 			while (true) {
@@ -25,23 +29,33 @@ const Typewriter = () => {
 					for (const letter of word + " ") {
 						setMessage(message => message + letter)
 						await time(80)
+						if (cancelled) return
 					}
 
 					setBlink(true)
 					await time(3000)
+					if (cancelled) return
 					setBlink(false)
 
 					for (const _ of word + " ") {
 						setMessage(message => message.slice(0, -1))
 						await time(40)
+						if (cancelled) return
 					}
 
 					setBlink(true)
 					await time(1000)
+					if (cancelled) return
 					setBlink(false)
 				}
 			}
 		})
+
+		return () => {
+			cancelled = true
+			setMessage("")
+			setBlink(false)
+		}
 	}, [])
 
 	return (
