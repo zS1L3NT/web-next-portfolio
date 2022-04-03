@@ -3,12 +3,9 @@ import { useEffect, useState } from "react"
 const time = (ms: number) => new Promise(res => setTimeout(res, ms))
 
 const Typewriter = () => {
-	//#region Hooks
 	const [blink, setBlink] = useState(false)
 	const [message, setMessage] = useState("")
-	//#endregion
 
-	//#region Effects
 	useEffect(() => {
 		const words = [
 			"Full Stack Developer",
@@ -46,7 +43,6 @@ const Typewriter = () => {
 			}
 		})
 	}, [])
-	//#endregion
 
 	return (
 		<h1 className="flex mx-auto text-white select-none sm:mt-2 md:mt-4 xs:text-3xl sm:text-4xl md:text-6xl w-fit font-montserrat-regular">

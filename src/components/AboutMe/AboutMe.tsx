@@ -1,13 +1,9 @@
-import Image from "next/image"
-
 interface Props {
-	"about-me": {
-		paragraphs: string[]
-	}
+	paragraphs: string[]
 }
 
-const AboutMe: React.FC<Props> = (props: Props) => {
-	const { paragraphs } = props["about-me"]
+const AboutMe = (props: Props) => {
+	const { paragraphs } = props
 
 	return (
 		<section className="w-full h-full bg-white">
@@ -17,11 +13,7 @@ const AboutMe: React.FC<Props> = (props: Props) => {
 			<div className="container flex flex-col mx-auto md:py-14 xs:px-8 xs:py-6 sm:px-6 sm:py-9 md:px-4 lg:flex-row">
 				<div className="flex items-start justify-center flex-1 xs:mb-6 sm:mb-9 md:mb-12 lg:mb-0 lg:items-center">
 					<div className="relative xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
-						<Image
-							className="rounded-full"
-							src="/assets/images/profile.jpg"
-							layout="fill"
-						/>
+						<img className="rounded-full" src="/assets/images/profile.jpg" />
 					</div>
 				</div>
 				<div className="flex-2">
