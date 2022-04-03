@@ -5,7 +5,7 @@ import ParticlesConfig from "../../particles.config"
 import Typewriter from "./Typewriter"
 import { AnimatePresence, motion } from "framer-motion"
 
-const Landing: React.FC = () => {
+const Landing = () => {
 	return (
 		<section className="w-full h-full bg-bgcolor">
 			<AnimatePresence>

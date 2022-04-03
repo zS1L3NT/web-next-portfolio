@@ -5,7 +5,7 @@ type Props = {
 	children?: ReactNode
 }
 
-const Center: React.FC<Props> = (props: Props) => {
+const Center = (props: Props) => {
 	return (
 		<div className="flex items-center justify-center w-full h-full">
 			<div className={props.className}>{props.children}</div>

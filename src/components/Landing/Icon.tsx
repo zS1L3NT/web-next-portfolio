@@ -3,7 +3,7 @@ type Props = {
 	icon: "github" | "linkedin" | "stackoverflow"
 }
 
-const Icon: React.FC<Props> = (props: Props) => {
+const Icon = (props: Props) => {
 	const className = `${props.className} fill-white cursor-pointer hover:fill-secondary-dark hover:scale-125`
 
 	return {
