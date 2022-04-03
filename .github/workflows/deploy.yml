@@ -5,7 +5,6 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
-        environment: production
         steps:
             - name: Performing Repository Checkout
               uses: actions/checkout@v2
@@ -15,17 +14,6 @@ jobs:
               with:
                   version: 6.0.2
                   run_install: true
-
-            - name: Writing to .env file
-              run: |
-                  echo 'VITE__FIREBASE__API_KEY=${{ secrets.VITE__FIREBASE__API_KEY }}' > .env
-                  echo 'VITE__FIREBASE__APP_ID=${{ secrets.VITE__FIREBASE__APP_ID }}' >> .env
-                  echo 'VITE__FIREBASE__AUTH_DOMAIN=${{ secrets.VITE__FIREBASE__AUTH_DOMAIN }}' >> .env
-                  echo 'VITE__FIREBASE__DATABASE_URL=${{ secrets.VITE__FIREBASE__DATABASE_URL }}' >> .env
-                  echo 'VITE__FIREBASE__MEASUREMENT_ID=${{ secrets.VITE__FIREBASE__MEASUREMENT_ID }}' >> .env
-                  echo 'VITE__FIREBASE__MESSAGING_SENDER_ID=${{ secrets.VITE__FIREBASE__MESSAGING_SENDER_ID }}' >> .env
-                  echo 'VITE__FIREBASE__PROJECT_ID=${{ secrets.VITE__FIREBASE__PROJECT_ID }}' >> .env
-                  echo 'VITE__FIREBASE__STORAGE_BUCKET=${{ secrets.VITE__FIREBASE__STORAGE_BUCKET }}' >> .env
 
             - name: Building React Project
               run: pnpm build

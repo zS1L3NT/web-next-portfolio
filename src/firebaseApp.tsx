@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app"
 
 export default initializeApp({
-	apiKey: import.meta.env.VITE__FIREBASE__API_KEY,
-	authDomain: import.meta.env.VITE__FIREBASE__AUTH_DOMAIN,
-	databaseURL: import.meta.env.VITE__FIREBASE__DATABASE_URL,
-	projectId: import.meta.env.VITE__FIREBASE__PROJECT_ID,
-	storageBucket: import.meta.env.VITE__FIREBASE__STORAGE_BUCKET,
-	messagingSenderId: import.meta.env.VITE__FIREBASE__MESSAGING_SENDER_ID,
-	appId: import.meta.env.VITE__FIREBASE__APP_ID,
-	measurementId: import.meta.env.VITE__FIREBASE__MEASUREMENT_ID
+	apiKey: "AIzaSyB91Jr2ltjkfSa0od6I7KtjQfihJlYEU_A",
+	authDomain: "zectan-projects.firebaseapp.com",
+	databaseURL: "https://zectan-projects-default-rtdb.firebaseio.com",
+	projectId: "zectan-projects",
+	storageBucket: "zectan-projects.appspot.com",
+	messagingSenderId: "955587268284",
+	appId: "1:955587268284:web:05f5234d3d1483af2f0ab9",
+	measurementId: "G-PDKTRRXPFW",
 })
