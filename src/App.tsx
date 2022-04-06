@@ -20,6 +20,10 @@ const App = () => {
 			.catch(console.error)
 	}, [])
 
+	useEffect(() => {
+		document.getElementsByTagName("canvas")[0]!.style.position = "absolute"
+	})
+
 	return (
 		<>
 			<Landing />

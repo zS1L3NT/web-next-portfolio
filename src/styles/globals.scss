@@ -28,10 +28,6 @@ body,
 	src: url(/assets/fonts/RobotoMono-Regular.ttf);
 }
 
-#tsparticles > canvas {
-	position: absolute !important;
-}
-
 ::-webkit-scrollbar {
 	@apply w-0;
 }
