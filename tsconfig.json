@@ -35,7 +35,16 @@
 		"jsx": "preserve",
 		"skipLibCheck": true,
 		"isolatedModules": true,
-		"incremental": true
+		"incremental": true,
+
+		/** Absolute Imports */
+		"baseUrl": "src",
+		"paths": {
+			"@@types/*": ["@types/*"],
+			"@components/*": ["components/*"],
+			"@functions/*": ["functions/*"],
+			"@styles/*": ["styles/*"]
+		}
 	},
 	"include": ["src"],
 	"exclude": ["node_modules"]

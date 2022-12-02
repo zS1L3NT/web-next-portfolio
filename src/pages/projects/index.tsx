@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next"
 
-import { Repository } from "../../@types/types"
-import getRepositories from "../../functions/getRepositories"
+import { Repository } from "@@types/types"
+import getRepositories from "@functions/getRepositories"
 
 const getServerSideProps: GetServerSideProps = async () => {
 	return {

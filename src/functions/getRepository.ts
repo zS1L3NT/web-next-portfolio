@@ -1,4 +1,5 @@
-import { FullRepository } from "../@types/types"
+import { FullRepository } from "@@types/types"
+
 import octokit from "../octokit"
 
 export default async (id: string): Promise<FullRepository> => {
