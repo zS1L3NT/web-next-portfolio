@@ -1,10 +1,4 @@
-interface Props {
-	paragraphs: string[]
-}
-
-const AboutMe = (props: Props) => {
-	const { paragraphs } = props
-
+const AboutMe = ({}: {}) => {
 	return (
 		<section className="w-full h-full bg-white">
 			<h1 className="mx-auto xs:text-3xl sm:text-4xl lg:text-5xl xs:pt-6 sm:pt-9 md:pt-12 w-fit font-montserrat-bold">
@@ -18,9 +12,20 @@ const AboutMe = (props: Props) => {
 				</div>
 				<div className="flex-2">
 					<p className="font-montserrat-regular xs:text-sm md:text-lg">
-						<span className="block mb-4">{paragraphs[0]}</span>
-						<span className="block mb-4">{paragraphs[1]}</span>
-						<span className="block">{paragraphs[2]}</span>
+						<span className="block mb-4">
+							Hello! My name is Zechariah, and I am a React, TypeScript and Rust
+							Developer from Singapore. Building enjoy doing Full-Stack Web
+							Development, App Development and solving programming problems. I really
+							enjoy taking on side-projects that I know I can definitely learn from or
+							help me fix real life issues that I encounter.
+						</span>
+						<span className="block">
+							Currently, I am a CSIT Diploma Scholar in Temasek Polytechnic (TP),
+							Information Technology, Year 3. In TP, I am a World Skills Web
+							Technologies competitor, so I often have to go far beyond my school
+							curriculum to learn other technologies and frameworks to be competent in
+							my skill trade.
+						</span>
 					</p>
 				</div>
 			</div>

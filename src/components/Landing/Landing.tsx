@@ -1,11 +1,12 @@
+import { AnimatePresence, motion } from "framer-motion"
+import Particles from "react-tsparticles"
+
+import ParticlesConfig from "../../particles.config"
 import Center from "../Center"
 import Icon from "./Icon"
-import Particles from "react-tsparticles"
-import ParticlesConfig from "../../particles.config"
 import Typewriter from "./Typewriter"
-import { AnimatePresence, motion } from "framer-motion"
 
-const Landing = () => {
+const Landing = ({}: {}) => {
 	return (
 		<section className="w-full h-full bg-bgcolor">
 			<AnimatePresence>

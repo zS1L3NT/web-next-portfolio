@@ -2,14 +2,14 @@ import { useEffect, useState } from "react"
 
 const time = (ms: number) => new Promise(res => setTimeout(res, ms))
 
-const Typewriter = () => {
+const Typewriter = ({}: {}) => {
 	const [blink, setBlink] = useState(false)
 	const [message, setMessage] = useState("")
 
 	useEffect(() => {
 		const words = [
-			"Full Stack Developer",
-			"Discord Bot Developer",
+			"Full Stack Web Developer",
+			"Android App Developer",
 			"World Skills Competitor",
 			"student from Temasek Poly"
 		]

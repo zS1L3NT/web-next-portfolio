@@ -1,14 +1,9 @@
-import { ReactNode } from "react"
+import { PropsWithChildren } from "react"
 
-type Props = {
-	className?: string
-	children?: ReactNode
-}
-
-const Center = (props: Props) => {
+const Center = ({ className, children }: PropsWithChildren<{ className: string }>) => {
 	return (
 		<div className="flex items-center justify-center w-full h-full">
-			<div className={props.className}>{props.children}</div>
+			<div className={className}>{children}</div>
 		</div>
 	)
 }
