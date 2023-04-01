@@ -20,7 +20,7 @@ const Landing = ({}: {}) => {
 			</AnimatePresence>
 			<Center className="text-center xs:mx-2 sm:mx-1">
 				<h1 className="text-white select-none xs:text-3xl sm:text-4xl md:text-6xl font-montserrat-regular">
-					Hello, I&apos;m <span className="text-secondary">Zechariah Tan</span>
+					Hello, I&apos;m <span className="text-primary-400">Zechariah Tan</span>
 				</h1>
 				<Typewriter />
 
