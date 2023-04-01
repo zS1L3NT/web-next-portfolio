@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 import globals from "../../../globals.module.scss"
 
 const AboutMe = ({}: {}) => {
@@ -5,9 +7,12 @@ const AboutMe = ({}: {}) => {
 		<section className="w-full bg-white">
 			<h1 className={globals.heading}>About Me</h1>
 			<div className="container flex flex-col mx-auto xs:gap-8 sm:gap-12 lg:gap-16 xs:my-6 sm:my-9 md:my-14 lg:flex-row">
-				<img
+				<Image
 					className="m-auto rounded-full xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
 					src="/assets/images/profile.jpg"
+					alt="Profile Picture"
+					width={512}
+					height={512}
 				/>
 				<div className="flex flex-col gap-4 flex-2 xs:px-6 sm:px-10 lg:px-0 font-montserrat-regular xs:text-sm md:text-lg">
 					<p>
