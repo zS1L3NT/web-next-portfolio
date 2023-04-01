@@ -35,3 +35,7 @@ body,
 #__next {
 	@apply w-full h-full;
 }
+
+canvas {
+	opacity: 0.5;
+}
