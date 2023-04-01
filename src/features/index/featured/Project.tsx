@@ -1,15 +1,15 @@
 import useSWR from "swr"
 
-import fetcher from "../../utils/fetcher"
-import style from "./FeaturedProject.module.scss"
+import fetcher from "../../../utils/fetcher"
+import style from "./Project.module.scss"
 
-const FeaturedProject = ({ name }: { name: string }) => {
+const Project = ({ name }: { name: string }) => {
 	const { data, error } = useSWR(`https://api.github.com/repos/zS1L3NT/${name}`, fetcher)
 
 	return (
 		<div
 			className={
-				style.featuredProject +
+				style.project +
 				" container flex flex-col items-center sm:gap-4 md:gap-8 lg:gap-12 lg:h-72 lg:flex-row"
 			}>
 			<img
@@ -36,4 +36,4 @@ const FeaturedProject = ({ name }: { name: string }) => {
 	)
 }
 
-export default FeaturedProject
+export default Project

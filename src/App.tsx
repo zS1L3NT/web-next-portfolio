@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 
-import AboutMe from "./components/AboutMe/AboutMe"
-import FeaturedProjects from "./components/FeaturedProjects/FeaturedProjects"
-import Landing from "./components/Landing/Landing"
+import AboutMe from "./features/index/about/AboutMe"
+import Featured from "./features/index/featured/Featured"
+import Landing from "./features/index/landing/Landing"
 
 const App = () => {
 	useEffect(() => {
@@ -13,7 +13,7 @@ const App = () => {
 		<>
 			<Landing />
 			<AboutMe />
-			<FeaturedProjects />
+			<Featured />
 		</>
 	)
 }
