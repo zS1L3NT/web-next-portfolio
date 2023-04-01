@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
 	@apply m-0 p-0 box-border transition-all duration-300;
 }
@@ -28,6 +32,6 @@
 
 html,
 body,
-#root {
+#__next {
 	@apply w-full h-full;
 }

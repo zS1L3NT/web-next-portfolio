@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 
-import AboutMe from "./features/index/about/AboutMe"
-import Featured from "./features/index/featured/Featured"
-import Landing from "./features/index/landing/Landing"
+import AboutMe from "@/features/index/about/AboutMe"
+import Featured from "@/features/index/featured/Featured"
+import Landing from "@/features/index/landing/Landing"
 
-const App = () => {
+const Index = () => {
 	useEffect(() => {
 		document.getElementsByTagName("canvas")[0]!.style.position = "absolute"
 	}, [])
@@ -18,4 +18,4 @@ const App = () => {
 	)
 }
 
-export default App
+export default Index

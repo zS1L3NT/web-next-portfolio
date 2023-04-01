@@ -12,6 +12,9 @@
 		"rootDir": "src",
 		"outDir": "dist",
 		"typeRoots": ["./node_modules/@types", "./src/@types"],
+		"paths": {
+			"@/*": ["./src/*"]
+		},
 
 		/** Type Checking */
 		"strict": true,
@@ -37,6 +40,6 @@
 		"isolatedModules": true,
 		"incremental": true
 	},
-	"include": ["src"],
+	"include": ["next-env.d.ts", "src"],
 	"exclude": ["node_modules"]
 }
