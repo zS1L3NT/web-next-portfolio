@@ -2,12 +2,6 @@
 	@apply m-0 p-0 box-border transition-all duration-300;
 }
 
-html,
-body,
-#root {
-	@apply w-full h-full;
-}
-
 @font-face {
 	font-family: Montserrat-Bold;
 	src: url(/assets/fonts/Montserrat-Bold.ttf);
@@ -30,4 +24,10 @@ body,
 
 ::-webkit-scrollbar {
 	@apply w-0;
+}
+
+html,
+body,
+#root {
+	@apply w-full h-full;
 }
