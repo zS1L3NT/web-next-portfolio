@@ -1,7 +1,16 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import { iProject } from "@/utils/scraper"
+
+import Topic from "./Topic"
+
+const topics: [string, string, string][] = [
+	["special", "⭐", "This is a special repository!"],
+	["hackathon", "🧑‍💻", "This project was a hackathon project and most likely won't be updated"],
+	["unfinished", "🚧", "This project has yet to be completed..."],
+	["deprecated", "⚠️", "This project is not getting any further updates!"],
+	["broken", "💥", "This project does not work!"]
+]
 
 const Project = ({ project }: { project: iProject }) => {
 	return (
@@ -11,6 +20,16 @@ const Project = ({ project }: { project: iProject }) => {
 			<div>
 				<h1 className="xs:text-md sm:text-lg lg:text-xl font-montserrat-bold">
 					{project.name}
+					{topics
+						.filter(t => project.topics.includes(t[0]))
+						.map(([topic, emoji, message]) => (
+							<span
+								key={topic}
+								title={message}
+								className="inline-block ms-1 hover:scale-125">
+								{emoji}
+							</span>
+						))}
 				</h1>
 				<p className="mt-1 font-montserrat-regular xs:text-sm sm:text-base lg:text-md">
 					{project.description}
@@ -18,14 +37,9 @@ const Project = ({ project }: { project: iProject }) => {
 			</div>
 			<div className="flex flex-wrap gap-3">
 				{project.topics.map(t => (
-					<Image
+					<Topic
 						key={t}
-						title={t[0]!.toUpperCase() + t.slice(1)}
-						className="inline-block hover:scale-125"
-						src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
-						alt={t + " icon"}
-						width={25}
-						height={25}
+						topic={t}
 					/>
 				))}
 			</div>

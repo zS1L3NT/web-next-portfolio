@@ -26,14 +26,17 @@ const Project = ({ project }: { project: iProject }) => {
 					className="cursor-pointer hover:text-secondary-400 font-montserrat-bold xs:text-xl sm:text-2xl lg:text-3xl">
 					{project.name}
 				</Link>
-				<div className="flex flex-wrap group-even:lg:justify-end gap-x-3 gap-y-1 xs:mb-4 sm:mb-5 lg:mb-6">
+				<div className="flex flex-wrap mt-2 group-even:lg:justify-end gap-x-3 gap-y-1 xs:mb-4 sm:mb-5 lg:mb-6">
 					{project.topics.map(t => (
-						<Link
+						<Image
 							key={t}
-							href={"/projects?topic=" + t}
-							className="cursor-pointer font-montserrat-regular text-secondary-400 xs:text-sm sm:text-base lg:text-lg hover:underline">
-							{t}
-						</Link>
+							title={t[0]!.toUpperCase() + t.substring(1)}
+							className="inline-block hover:scale-125"
+							src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
+							alt={t + " icon"}
+							width={30}
+							height={30}
+						/>
 					))}
 				</div>
 				<p className="xs:text-sm sm:text-base lg:text-lg font-montserrat-regular">
