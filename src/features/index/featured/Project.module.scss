@@ -1,7 +1,0 @@
-.project:nth-of-type(2) {
-	@apply lg:flex-row-reverse lg:text-end;
-
-	& > div > div {
-		@apply lg:justify-end;
-	}
-}

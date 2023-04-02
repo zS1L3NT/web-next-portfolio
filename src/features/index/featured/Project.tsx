@@ -1,14 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import style from "./Project.module.scss"
-
 const Project = ({ project }: { project: any }) => {
 	return (
 		<div
 			className={
-				style.project +
-				" container flex flex-col items-center sm:gap-4 md:gap-8 lg:gap-12 lg:h-72 lg:flex-row"
+				"group even:lg:text-end even:lg:flex-row-reverse container flex flex-col items-center sm:gap-4 md:gap-8 lg:gap-12 lg:h-72 lg:flex-row"
 			}>
 			<Link href={"/projects/" + project.name}>
 				<Image
@@ -27,7 +24,7 @@ const Project = ({ project }: { project: any }) => {
 					className="cursor-pointer hover:text-secondary-400 font-montserrat-bold xs:text-xl sm:text-2xl lg:text-3xl">
 					{project.name}
 				</Link>
-				<div className="flex flex-wrap gap-x-3 gap-y-1 xs:mb-4 sm:mb-5 lg:mb-6">
+				<div className="flex flex-wrap group-even:lg:justify-end gap-x-3 gap-y-1 xs:mb-4 sm:mb-5 lg:mb-6">
 					{project.topics.sort().map((t: any) => (
 						<Link
 							key={t}

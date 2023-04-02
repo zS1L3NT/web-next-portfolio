@@ -1,11 +1,11 @@
 import Image from "next/image"
 
-import globals from "@/globals.module.scss"
-
 const AboutMe = ({}: {}) => {
 	return (
 		<section className="w-full bg-white">
-			<h1 className={globals.heading}>About Me</h1>
+			<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl xs:pt-6 sm:pt-9 md:pt-12 w-fit font-montserrat-bold">
+				About Me
+			</h1>
 			<div className="container flex flex-col mx-auto xs:gap-8 sm:gap-12 lg:gap-16 xs:my-6 sm:my-9 md:my-14 lg:flex-row">
 				<Image
 					className="m-auto rounded-full xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
