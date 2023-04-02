@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next"
 import { useEffect } from "react"
 
 import AboutMe from "@/features/index/about/AboutMe"
@@ -8,15 +9,13 @@ import Landing from "@/features/index/landing/Landing"
 import Other from "@/features/index/other/Other"
 import fetcher, { iProject } from "@/utils/fetcher"
 
-const Index = ({
-	featured,
-	other,
-	updated
-}: {
+type Props = {
 	featured: iProject[]
 	other: iProject[]
 	updated: string | null
-}) => {
+}
+
+const Index = ({ featured, other, updated }: Props) => {
 	useEffect(() => {
 		document.getElementsByTagName("canvas")[0]!.style.position = "absolute"
 	}, [])
@@ -35,7 +34,7 @@ const Index = ({
 	)
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
 	return {
 		props: {
 			featured: await Promise.all(
@@ -57,7 +56,8 @@ export const getStaticProps = async () => {
 				.then(res => res.json())
 				.then(res => res.commit.author.date)
 				.catch(() => null)
-		}
+		},
+		revalidate: 60
 	}
 }
 
