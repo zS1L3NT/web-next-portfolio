@@ -20,7 +20,7 @@ const Other = ({ projects }: { projects: iProject[] }) => {
 			</div>
 			<Link
 				href="/projects"
-				className="block px-4 py-3 m-auto text-white w-fit hover:scale-105 hover:shadow-primary-500 font-montserrat-regular bg-primary-400">
+				className="block px-4 py-3 m-auto border w-fit hover:scale-105 text-primary-400 font-montserrat-regular border-primary-400">
 				View More
 			</Link>
 		</section>

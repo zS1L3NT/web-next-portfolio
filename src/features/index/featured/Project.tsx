@@ -11,7 +11,7 @@ const Project = ({ project }: { project: iProject }) => {
 			}>
 			<Link href={"/projects/" + project.name}>
 				<Image
-					className="sm:w-full md:w-full lg:w-fit lg:h-72"
+					className="hover:scale-105 sm:w-full md:w-full lg:w-fit lg:h-72"
 					src={`https://res.cloudinary.com/zs1l3nt/image/upload/repositories/${project.name}.png`}
 					alt={"Banner for " + project.name}
 					width={1600}
