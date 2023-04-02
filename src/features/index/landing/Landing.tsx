@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion"
 import Particles from "react-tsparticles"
 
-import ParticlesConfig from "../../../particles.config"
+import ParticlesConfig from "@/particles.config"
+
 import Icon from "./Icon"
 import Typewriter from "./Typewriter"
 

@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import globals from "../../../globals.module.scss"
+import globals from "@/globals.module.scss"
 
 const AboutMe = ({}: {}) => {
 	return (
