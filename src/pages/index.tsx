@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 
 import AboutMe from "@/features/index/about/AboutMe"
+import ContactMe from "@/features/index/contact/ContactMe"
 import Featured from "@/features/index/featured/Featured"
 import Landing from "@/features/index/landing/Landing"
 import Other from "@/features/index/other/Other"
@@ -14,9 +15,12 @@ const Index = ({ featured, other }: { featured: iProject[]; other: iProject[] })
 	return (
 		<>
 			<Landing />
-			<AboutMe />
-			<Featured projects={featured} />
-			<Other projects={other} />
+			<main className="flex flex-col xs:my-8 sm:my-12 lg:my-16 xs:gap-8 sm:gap-12 lg:gap-16">
+				<AboutMe />
+				<Featured projects={featured} />
+				<Other projects={other} />
+				<ContactMe />
+			</main>
 		</>
 	)
 }

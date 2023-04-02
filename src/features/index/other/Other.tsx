@@ -7,7 +7,7 @@ import Project from "./Project"
 const Other = ({ projects }: { projects: iProject[] }) => {
 	return (
 		<section className="w-full bg-white">
-			<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl xs:pt-6 sm:pt-9 md:pt-12 w-fit font-montserrat-bold">
+			<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
 				Other Projects
 			</h1>
 			<div className="container grid mx-auto xs:gap-8 sm:gap-10 lg:gap-12 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xs:px-6 sm:px-10 lg:px-0 xs:my-6 sm:my-9 md:my-14">
