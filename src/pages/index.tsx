@@ -3,11 +3,20 @@ import { useEffect } from "react"
 import AboutMe from "@/features/index/about/AboutMe"
 import ContactMe from "@/features/index/contact/ContactMe"
 import Featured from "@/features/index/featured/Featured"
+import Footer from "@/features/index/footer/Footer"
 import Landing from "@/features/index/landing/Landing"
 import Other from "@/features/index/other/Other"
 import fetcher, { iProject } from "@/utils/fetcher"
 
-const Index = ({ featured, other }: { featured: iProject[]; other: iProject[] }) => {
+const Index = ({
+	featured,
+	other,
+	updated
+}: {
+	featured: iProject[]
+	other: iProject[]
+	updated: string | null
+}) => {
 	useEffect(() => {
 		document.getElementsByTagName("canvas")[0]!.style.position = "absolute"
 	}, [])
@@ -20,6 +29,7 @@ const Index = ({ featured, other }: { featured: iProject[]; other: iProject[] })
 				<Featured projects={featured} />
 				<Other projects={other} />
 				<ContactMe />
+				<Footer updated={updated} />
 			</main>
 		</>
 	)
@@ -40,7 +50,13 @@ export const getStaticProps = async () => {
 					"ts-npm-ytmusic-api",
 					"ts-discord-reminder"
 				].map(fetcher)
+			),
+			updated: await fetch(
+				"https://api.github.com/repos/zS1L3NT/web-react-portfolio/commits/main"
 			)
+				.then(res => res.json())
+				.then(res => res.commit.author.date)
+				.catch(() => null)
 		}
 	}
 }
