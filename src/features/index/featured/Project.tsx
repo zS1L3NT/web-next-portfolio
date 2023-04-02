@@ -1,7 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 
-const Project = ({ project }: { project: any }) => {
+import { iProject } from "@/utils/fetcher"
+
+const Project = ({ project }: { project: iProject }) => {
 	return (
 		<div
 			className={
@@ -25,7 +27,7 @@ const Project = ({ project }: { project: any }) => {
 					{project.name}
 				</Link>
 				<div className="flex flex-wrap group-even:lg:justify-end gap-x-3 gap-y-1 xs:mb-4 sm:mb-5 lg:mb-6">
-					{project.topics.sort().map((t: any) => (
+					{project.topics.map(t => (
 						<Link
 							key={t}
 							href={"/projects?topic=" + t}

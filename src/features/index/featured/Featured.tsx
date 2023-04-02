@@ -1,6 +1,8 @@
+import { iProject } from "@/utils/fetcher"
+
 import Project from "./Project"
 
-const Featured = ({ projects }: { projects: any[] }) => {
+const Featured = ({ projects }: { projects: iProject[] }) => {
 	return (
 		<section className="w-100">
 			<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl xs:pt-6 sm:pt-9 md:pt-12 w-fit font-montserrat-bold">
