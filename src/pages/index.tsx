@@ -3,9 +3,10 @@ import { useEffect } from "react"
 import AboutMe from "@/features/index/about/AboutMe"
 import Featured from "@/features/index/featured/Featured"
 import Landing from "@/features/index/landing/Landing"
+import Other from "@/features/index/other/Other"
 import fetcher, { iProject } from "@/utils/fetcher"
 
-const Index = ({ featured }: { featured: iProject[] }) => {
+const Index = ({ featured, other }: { featured: iProject[]; other: iProject[] }) => {
 	useEffect(() => {
 		document.getElementsByTagName("canvas")[0]!.style.position = "absolute"
 	}, [])
@@ -15,6 +16,7 @@ const Index = ({ featured }: { featured: iProject[] }) => {
 			<Landing />
 			<AboutMe />
 			<Featured projects={featured} />
+			<Other projects={other} />
 		</>
 	)
 }
@@ -24,6 +26,16 @@ export const getStaticProps = async () => {
 		props: {
 			featured: await Promise.all(
 				["soundroid-v2", "web-formby", "rs-tauri-chess"].map(fetcher)
+			),
+			other: await Promise.all(
+				[
+					"ts-discord-soundroid",
+					"web-monetary",
+					"deskpower",
+					"web-react-statify",
+					"ts-npm-ytmusic-api",
+					"ts-discord-reminder"
+				].map(fetcher)
 			)
 		}
 	}
