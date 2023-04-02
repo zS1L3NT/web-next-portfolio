@@ -7,7 +7,7 @@ import Featured from "@/features/index/featured/Featured"
 import Footer from "@/features/index/footer/Footer"
 import Landing from "@/features/index/landing/Landing"
 import Other from "@/features/index/other/Other"
-import fetcher, { iProject } from "@/utils/fetcher"
+import scraper, { iProject } from "@/utils/scraper"
 
 type Props = {
 	featured: iProject[]
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 	return {
 		props: {
 			featured: await Promise.all(
-				["soundroid-v2", "web-formby", "rs-tauri-chess"].map(fetcher)
+				["soundroid-v2", "web-formby", "rs-tauri-chess"].map(scraper)
 			),
 			other: await Promise.all(
 				[
@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 					"web-react-statify",
 					"ts-npm-ytmusic-api",
 					"ts-discord-reminder"
-				].map(fetcher)
+				].map(scraper)
 			),
 			updated: await fetch(
 				"https://api.github.com/repos/zS1L3NT/web-react-portfolio/commits/main"

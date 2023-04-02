@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { iProject } from "@/utils/fetcher"
+import { iProject } from "@/utils/scraper"
 
 const Project = ({ project }: { project: iProject }) => {
 	return (

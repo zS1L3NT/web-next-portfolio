@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { iProject } from "@/utils/fetcher"
+import { iProject } from "@/utils/scraper"
 
 import Project from "./Project"
 
