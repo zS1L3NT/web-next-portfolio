@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 				].map(scraper)
 			),
 			updated: await fetch(
-				"https://api.github.com/repos/zS1L3NT/web-react-portfolio/commits/main"
+				"https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main"
 			)
 				.then(res => res.json())
 				.then(res => res.commit.author.date)
