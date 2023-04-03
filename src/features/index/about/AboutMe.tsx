@@ -17,10 +17,10 @@ const AboutMe = ({}: {}) => {
 				<div className="flex flex-col gap-4 flex-2 xs:px-6 sm:px-10 lg:px-0 font-montserrat-regular xs:text-sm md:text-lg">
 					<p>
 						Hello! My name is Zechariah, and I am a React, TypeScript and Rust Developer
-						from Singapore. Building enjoy doing Full-Stack Web Development, App
-						Development and solving programming problems. I really enjoy taking on
-						side-projects that I know I can definitely learn from or help me fix real
-						life issues that I encounter.
+						from Singapore. I enjoy doing Full-Stack Web Development, App Development
+						and solving programming problems. I really enjoy taking on side-projects
+						that I know I can definitely learn from or help me fix real life issues that
+						I encounter.
 					</p>
 					<p>
 						Currently, I am a CSIT Diploma Scholar in Temasek Polytechnic (TP),
