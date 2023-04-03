@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next"
+import Head from "next/head"
 import { useEffect } from "react"
 
 import AboutMe from "@/features/index/about/AboutMe"
@@ -22,6 +23,9 @@ const Index = ({ featured, other, updated }: Props) => {
 
 	return (
 		<>
+			<Head>
+				<title>Zechariah Tan</title>
+			</Head>
 			<Landing />
 			<main className="flex flex-col xs:my-8 sm:my-12 lg:my-16 xs:gap-8 sm:gap-12 lg:gap-16">
 				<AboutMe />
