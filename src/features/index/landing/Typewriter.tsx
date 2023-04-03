@@ -62,9 +62,16 @@ const Typewriter = ({}: {}) => {
 		<h1 className="flex mx-auto text-white select-none sm:mt-2 md:mt-4 xs:text-3xl sm:text-4xl md:text-6xl w-fit font-montserrat-regular">
 			<div>
 				{message.split("").map((letter, i) => (
-					<span key={i}>{letter}</span>
+					<span
+						key={i}
+						className="text-white">
+						{letter}
+					</span>
 				))}
-				<div className={"inline-block -ml-1" + (blink ? " animate-cursor-blink" : "")}>
+				<div
+					className={
+						"text-white inline-block -ml-1" + (blink ? " animate-cursor-blink" : "")
+					}>
 					|
 				</div>
 			</div>
