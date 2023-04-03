@@ -35,7 +35,7 @@ const Project = ({ project }: { project: iProject }) => {
 					{project.description}
 				</p>
 			</div>
-			<div className="flex flex-wrap gap-3">
+			<div className="flex flex-wrap xs:gap-1 sm:gap-2 lg:gap-3">
 				{project.topics.map(t => (
 					<Topic
 						key={t}

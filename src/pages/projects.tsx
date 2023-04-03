@@ -17,7 +17,7 @@ const Projects = ({ projects, page, pages }: Props) => {
 			<Link
 				href="/"
 				className="inline-block hover:scale-105 font-montserrat-regular xs:text-sm sm:text-base lg:text-md">
-				&larr; Back
+				&larr; Home
 			</Link>
 			<h1 className="xs:mt-2 sm:mt-4 lg:mt-6 xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
 				Projects

@@ -14,8 +14,8 @@ const Topic = ({ topic }: { topic: string }) => {
 				pngs.includes(topic) ? "png" : "svg"
 			}`}
 			alt={topic + " icon"}
-			width={25}
-			height={25}
+			width={30}
+			height={30}
 		/>
 	)
 }
