@@ -8,8 +8,7 @@ export default {
 			}
 		},
 		color: {
-			value: "#ccd6f6",
-			opacity: 0.5
+			value: "#ccd6f6"
 		},
 		shape: {
 			type: "circle",

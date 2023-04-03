@@ -1,0 +1,27 @@
+{
+	"name": "Zechariah's Portfolio Website",
+	"short_name": "Zechariah Tan",
+	"icons": [
+		{
+			"src": "/favicon.ico",
+			"sizes": "396x396",
+			"type": "image/x-icon",
+			"purpose": "any"
+		},
+		{
+			"src": "/favicon.ico",
+			"sizes": "396x396",
+			"type": "image/x-icon",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/assets/images/profile.jpg",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#ccd6f6",
+	"background_color": "#0a192f"
+}
