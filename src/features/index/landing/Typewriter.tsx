@@ -8,19 +8,19 @@ const Typewriter = ({}: {}) => {
 
 	useEffect(() => {
 		const words = [
+			"WorldSkills Web Tech Winner",
 			"Full Stack Web Developer",
 			"Android App Developer",
-			"World Skills Competitor",
 			"student from Temasek Poly"
 		]
 
 		let cancelled = false
-		time(1000).then(async () => {
+		time(500).then(async () => {
 			if (cancelled) return
 
 			for (const letter of "and I'm a ") {
 				setMessage(message => message + letter)
-				await time(80)
+				await time(40)
 				if (cancelled) return
 			}
 
@@ -28,23 +28,23 @@ const Typewriter = ({}: {}) => {
 				for (const word of words) {
 					for (const letter of word + " ") {
 						setMessage(message => message + letter)
-						await time(80)
-						if (cancelled) return
-					}
-
-					setBlink(true)
-					await time(3000)
-					if (cancelled) return
-					setBlink(false)
-
-					for (const _ of word + " ") {
-						setMessage(message => message.slice(0, -1))
 						await time(40)
 						if (cancelled) return
 					}
 
 					setBlink(true)
-					await time(1000)
+					await time(2000)
+					if (cancelled) return
+					setBlink(false)
+
+					for (const _ of word + " ") {
+						setMessage(message => message.slice(0, -1))
+						await time(20)
+						if (cancelled) return
+					}
+
+					setBlink(true)
+					await time(500)
 					if (cancelled) return
 					setBlink(false)
 				}
