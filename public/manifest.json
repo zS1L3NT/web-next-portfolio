@@ -4,20 +4,20 @@
 	"icons": [
 		{
 			"src": "/favicon.ico",
-			"sizes": "396x396",
+			"sizes": "256x256",
 			"type": "image/x-icon",
 			"purpose": "any"
 		},
 		{
 			"src": "/favicon.ico",
-			"sizes": "396x396",
+			"sizes": "256x256",
 			"type": "image/x-icon",
 			"purpose": "maskable"
 		},
 		{
 			"src": "/assets/images/profile.jpg",
-			"sizes": "512x512",
-			"type": "image/png"
+			"sizes": "1024x1024",
+			"type": "image/jpg"
 		}
 	],
 	"start_url": ".",
