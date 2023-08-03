@@ -40,10 +40,20 @@ module.exports = {
 					"50%": {
 						color: "white"
 					}
+				},
+				"mouse-scroll": {
+					from: {
+						transform: "translateY(10px)"
+					},
+					to: {
+						transform: "translateY(20px)"
+					}
 				}
 			},
 			animation: {
-				"cursor-blink": "cursor-blink 1s infinite"
+				"cursor-blink": "cursor-blink 1s infinite",
+				"roll": "mouse-scroll 0.8s cubic-bezier(.7,0,.3,1) infinite alternate",
+				"roll-shadow": "mouse-scroll 0.8s cubic-bezier(.7,0,.3,1) 80ms infinite alternate"
 			},
 			flex: {
 				"2": "2 1 0%"

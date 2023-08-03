@@ -5,6 +5,7 @@ import ParticlesConfig from "@/particles.config"
 
 import Icon from "./Icon"
 import Typewriter from "./Typewriter"
+import Mouse from "./Mouse"
 
 const Landing = ({}: {}) => {
 	return (
@@ -41,6 +42,8 @@ const Landing = ({}: {}) => {
 							/>
 						</div>
 					</div>
+					
+					<Mouse />
 				</div>
 			</div>
 		</section>
