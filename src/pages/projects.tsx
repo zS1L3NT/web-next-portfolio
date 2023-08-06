@@ -75,17 +75,22 @@ const Projects = ({ projects, page, pages }: Props) => {
 export const getServerSideProps: GetServerSideProps<Props> = async context => {
 	const page = "page" in context.query ? +context.query.page! : 1
 	const projects = await prisma.project.findMany({
-		skip: (page - 1) * 30,
-		take: 30,
+		select: {
+			title: true,
+			description: true,
+			tags: true,
+		},
 		orderBy: {
 			updated_at: "desc",
 		},
+		skip: (page - 1) * 30,
+		take: 30,
 	})
 
 	return projects.length
 		? {
 				props: {
-					projects: projects.map(p => ({ ...p, updated_at: null })) as iProject[],
+					projects,
 					page,
 					pages: Math.ceil((await prisma.project.count()) / 30),
 				},

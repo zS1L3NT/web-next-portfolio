@@ -40,33 +40,42 @@ const Index = ({ featured, other, updated }: Props) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
+	const projects = await prisma.project.findMany({
+		select: {
+			title: true,
+			description: true,
+			tags: true,
+		},
+		where: {
+			title: {
+				in: [
+					"soundroid-v2",
+					"web-formby",
+					"rs-tauri-chess",
+					"ts-discord-soundroid",
+					"web-monetary",
+					"deskpower",
+					"web-react-statify",
+					"ts-npm-ytmusic-api",
+					"ts-discord-reminder",
+				],
+			},
+		},
+	})
+
 	return {
 		props: {
-			featured: (
-				await prisma.project.findMany({
-					where: {
-						title: {
-							in: ["soundroid-v2", "web-formby", "rs-tauri-chess"],
-						},
-					},
-				})
-			).map(p => ({ ...p, updated_at: null })) as iProject[],
-			other: (
-				await prisma.project.findMany({
-					where: {
-						title: {
-							in: [
-								"ts-discord-soundroid",
-								"web-monetary",
-								"deskpower",
-								"web-react-statify",
-								"ts-npm-ytmusic-api",
-								"ts-discord-reminder",
-							],
-						},
-					},
-				})
-			).map(p => ({ ...p, updated_at: null })) as iProject[],
+			featured: ["soundroid-v2", "web-formby", "rs-tauri-chess"].map(
+				t => projects.find(p => p.title === t)!,
+			),
+			other: [
+				"ts-discord-soundroid",
+				"web-monetary",
+				"deskpower",
+				"web-react-statify",
+				"ts-npm-ytmusic-api",
+				"ts-discord-reminder",
+			].map(t => projects.find(p => p.title === t)!),
 			updated: await fetch(
 				"https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main",
 			)
