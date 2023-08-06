@@ -172,8 +172,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 			orderBy: {
 				updated_at: "desc",
 			},
-			skip: (page - 1) * 30,
-			take: 30,
+			skip: (page - 1) * 15,
+			take: 15,
 		}),
 		await prisma.project.count({
 			where: {
@@ -190,7 +190,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 					projects,
 					tags,
 					page,
-					pages: Math.ceil(total / 30),
+					pages: Math.ceil(total / 15),
 				},
 		  }
 		: {
