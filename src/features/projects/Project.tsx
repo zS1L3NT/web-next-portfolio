@@ -1,16 +1,8 @@
+import Image from "next/image"
 import Link from "next/link"
 
 import { iProject } from "@/@types/project"
-
-import Tag from "./Tag"
-
-const tags: [string, string, string][] = [
-	["special", "⭐", "This is a special repository!"],
-	["hackathon", "🧑‍💻", "This project was a hackathon project and most likely won't be updated"],
-	["unfinished", "🚧", "This project has yet to be completed..."],
-	["deprecated", "⚠️", "This project is not getting any further updates!"],
-	["broken", "💥", "This project does not work!"],
-]
+import { HIDDEN_TAGS, PNG_TAGS, SPECIAL_TAGS } from "@/constants"
 
 const Project = ({ project }: { project: iProject }) => {
 	return (
@@ -20,7 +12,7 @@ const Project = ({ project }: { project: iProject }) => {
 			<div>
 				<h1 className="xs:text-md sm:text-lg lg:text-xl font-montserrat-bold">
 					{project.title}
-					{tags
+					{SPECIAL_TAGS
 						.filter(t => project.tags.includes(t[0]))
 						.map(([tag, emoji, message]) => (
 							<span
@@ -36,12 +28,21 @@ const Project = ({ project }: { project: iProject }) => {
 				</p>
 			</div>
 			<div className="flex flex-wrap xs:gap-1 sm:gap-2 lg:gap-3">
-				{project.tags.map(t => (
-					<Tag
-						key={t}
-						tag={t}
-					/>
-				))}
+				{project.tags
+					.filter(t => !HIDDEN_TAGS.includes(t))
+					.map(t => (
+						<Image
+							key={t}
+							title={t[0]!.toUpperCase() + t.substring(1)}
+							className="inline-block xs:scale-75 sm:scale-90"
+							src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.${
+								PNG_TAGS.includes(t) ? "png" : "svg"
+							}`}
+							alt={t + " icon"}
+							width={25}
+							height={25}
+						/>
+					))}
 			</div>
 		</Link>
 	)

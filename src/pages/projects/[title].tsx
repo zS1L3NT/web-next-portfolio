@@ -7,20 +7,12 @@ import ReactMarkdown from "react-markdown"
 import { Octokit as Github } from "@octokit/core"
 
 import { iProject } from "@/@types/project"
-import Tag from "@/features/project/Tag"
+import { HIDDEN_TAGS, PNG_TAGS, SPECIAL_TAGS } from "@/constants"
 import { prisma } from "@/prisma"
 
 type Props = {
 	project: iProject & { readme: string | null; monorepo: string[] | null }
 }
-
-const tags: [string, string, string][] = [
-	["special", "⭐", "This is a special repository!"],
-	["hackathon", "🧑‍💻", "This project was a hackathon project and most likely won't be updated"],
-	["unfinished", "🚧", "This project has yet to be completed..."],
-	["deprecated", "⚠️", "This project is not getting any further updates!"],
-	["broken", "💥", "This project does not work!"],
-]
 
 const Project = ({ project }: Props) => {
 	return (
@@ -37,7 +29,7 @@ const Project = ({ project }: Props) => {
 				<h1 className="xs:mt-4 sm:mt-6 lg:mt-8 xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
 					{project.title}
 					<span className="align-middle xs:text-xl sm:text-2xl lg:text-3xl">
-						{tags
+						{SPECIAL_TAGS
 							.filter(t => project.tags.includes(t[0]))
 							.map(([tag, emoji, message]) => (
 								<span
@@ -64,12 +56,21 @@ const Project = ({ project }: Props) => {
 					{project.description}
 				</p>
 				<div className="flex flex-wrap gap-3 xs:gap-1 sm:gap-2 xs:mt-2 sm:mt-3 lg:mt-4">
-					{project.tags.map(t => (
-						<Tag
-							key={t}
-							tag={t}
-						/>
-					))}
+					{project.tags
+						.filter(t => !HIDDEN_TAGS.includes(t))
+						.map(t => (
+							<Image
+								key={t}
+								title={t[0]!.toUpperCase() + t.substring(1)}
+								className="inline-block xs:scale-75 sm:scale-90"
+								src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.${
+									PNG_TAGS.includes(t) ? "png" : "svg"
+								}`}
+								alt={t + " icon"}
+								width={30}
+								height={30}
+							/>
+						))}
 				</div>
 
 				<Link

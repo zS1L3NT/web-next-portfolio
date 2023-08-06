@@ -31,7 +31,7 @@ const Project = ({ project }: { project: iProject }) => {
 						<Image
 							key={t}
 							title={t[0]!.toUpperCase() + t.substring(1)}
-							className="inline-block hover:scale-125"
+							className="inline-block"
 							src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
 							alt={t + " icon"}
 							width={30}
