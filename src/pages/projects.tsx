@@ -149,8 +149,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 	const page = "page" in context.query ? +context.query.page! : 1
 
 	const tags = (
-		(await prisma.$queryRaw`SELECT DISTINCT UNNEST(tags) FROM "Project"`) as any[]
-	).map(t => t.unnest) as string[]
+		(await prisma.$queryRaw`SELECT DISTINCT UNNEST(tags) AS tag, COUNT(*) AS frequency FROM "Project" GROUP BY tag ORDER BY frequency DESC`) as any[]
+	).map(t => t.tag) as string[]
 	const searchTags = (
 		Array.isArray(context.query.tags)
 			? context.query.tags
