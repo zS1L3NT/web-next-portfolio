@@ -1,7 +1,8 @@
 import Link from "next/link"
 
-import Project from "./Project"
 import { iProject } from "@/@types/project"
+
+import Project from "./Project"
 
 const Other = ({ projects }: { projects: iProject[] }) => {
 	return (

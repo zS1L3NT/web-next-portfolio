@@ -1,6 +1,7 @@
-import { iProject } from "@/@types/project"
 import Image from "next/image"
 import Link from "next/link"
+
+import { iProject } from "@/@types/project"
 
 const Project = ({ project }: { project: iProject }) => {
 	return (

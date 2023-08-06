@@ -4,9 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 import ReactMarkdown from "react-markdown"
 
-import Tag from "@/features/project/Tag"
 import { Octokit as Github } from "@octokit/core"
+
 import { iProject } from "@/@types/project"
+import Tag from "@/features/project/Tag"
 import { prisma } from "@/prisma"
 
 type Props = {
@@ -18,7 +19,7 @@ const tags: [string, string, string][] = [
 	["hackathon", "🧑‍💻", "This project was a hackathon project and most likely won't be updated"],
 	["unfinished", "🚧", "This project has yet to be completed..."],
 	["deprecated", "⚠️", "This project is not getting any further updates!"],
-	["broken", "💥", "This project does not work!"]
+	["broken", "💥", "This project does not work!"],
 ]
 
 const Project = ({ project }: Props) => {
@@ -102,7 +103,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 	const github = new Github({ auth: process.env.GITHUB_TOKEN })
 	const title = context.params!.title as string
 
-	return await prisma.project.findFirstOrThrow({where: {title}})
+	return await prisma.project
+		.findFirstOrThrow({ where: { title } })
 		.then(async project => ({
 			props: {
 				project: {
@@ -110,7 +112,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 					description: project.description ?? "",
 					tags: project.tags ?? [],
 					readme: await fetch(
-						`https://raw.githubusercontent.com/zS1L3NT/${project.title}/main/README.md`
+						`https://raw.githubusercontent.com/zS1L3NT/${project.title}/main/README.md`,
 					)
 						.then(res => res.text())
 						.catch(() => null),
@@ -118,7 +120,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 						.request("GET /repos/{owner}/{repo}/contents/{path}", {
 							owner: "zS1L3NT",
 							repo: title,
-							path: "."
+							path: ".",
 						})
 						.then(res =>
 							Array.isArray(res.data)
@@ -126,20 +128,20 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 										.filter(
 											f =>
 												f.type === "dir" &&
-												f.name.includes(title.split("-").at(-1))
+												f.name.includes(title.split("-").at(-1)),
 										)
 										.map(f => f.name)
-								: []
+								: [],
 						)
-						.then(res => (res.length ? res.sort((a, b) => a.localeCompare(b)) : null))
-				}
-			}
+						.then(res => (res.length ? res.sort((a, b) => a.localeCompare(b)) : null)),
+				},
+			},
 		}))
 		.catch(e => {
 			console.log(e)
 
 			return {
-				notFound: true
+				notFound: true,
 			}
 		})
 }

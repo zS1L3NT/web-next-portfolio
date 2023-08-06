@@ -1,14 +1,15 @@
 import Link from "next/link"
 
-import Tag from "./Tag"
 import { iProject } from "@/@types/project"
+
+import Tag from "./Tag"
 
 const tags: [string, string, string][] = [
 	["special", "⭐", "This is a special repository!"],
 	["hackathon", "🧑‍💻", "This project was a hackathon project and most likely won't be updated"],
 	["unfinished", "🚧", "This project has yet to be completed..."],
 	["deprecated", "⚠️", "This project is not getting any further updates!"],
-	["broken", "💥", "This project does not work!"]
+	["broken", "💥", "This project does not work!"],
 ]
 
 const Project = ({ project }: { project: iProject }) => {

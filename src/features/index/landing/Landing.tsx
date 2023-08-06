@@ -4,10 +4,10 @@ import Particles from "react-tsparticles"
 import ParticlesConfig from "@/particles.config"
 
 import Icon from "./Icon"
-import Typewriter from "./Typewriter"
 import Mouse from "./Mouse"
+import Typewriter from "./Typewriter"
 
-const Landing = ({}: {}) => {
+const Landing = () => {
 	return (
 		<section className="w-full h-full bg-bgcolor">
 			<AnimatePresence>
@@ -42,7 +42,7 @@ const Landing = ({}: {}) => {
 							/>
 						</div>
 					</div>
-					
+
 					<Mouse />
 				</div>
 			</div>

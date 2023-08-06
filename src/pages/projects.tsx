@@ -2,8 +2,8 @@ import { GetServerSideProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 
-import Project from "@/features/projects/Project"
 import { iProject } from "@/@types/project"
+import Project from "@/features/projects/Project"
 import { prisma } from "@/prisma"
 
 type Props = {
@@ -78,21 +78,21 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 		skip: (page - 1) * 30,
 		take: 30,
 		orderBy: {
-			updated_at: "desc"
-		}
+			updated_at: "desc",
+		},
 	})
 
 	return projects.length
 		? {
-			props: {
-				projects: projects.map(p => ({ ...p, updated_at: null })) as iProject[],
-				page,
-				pages: Math.ceil((await prisma.project.count()) / 30)
-			}
-		}
+				props: {
+					projects: projects.map(p => ({ ...p, updated_at: null })) as iProject[],
+					page,
+					pages: Math.ceil((await prisma.project.count()) / 30),
+				},
+		  }
 		: {
-			notFound: true
-		}
+				notFound: true,
+		  }
 }
 
 export default Projects

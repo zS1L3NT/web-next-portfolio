@@ -1,4 +1,5 @@
 import { iProject } from "@/@types/project"
+
 import Project from "./Project"
 
 const Featured = ({ projects }: { projects: iProject[] }) => {
