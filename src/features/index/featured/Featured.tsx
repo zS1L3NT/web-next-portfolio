@@ -1,5 +1,4 @@
-import { iProject } from "@/utils/scraper"
-
+import { iProject } from "@/@types/project"
 import Project from "./Project"
 
 const Featured = ({ projects }: { projects: iProject[] }) => {
@@ -11,7 +10,7 @@ const Featured = ({ projects }: { projects: iProject[] }) => {
 			<div className="container flex flex-col mx-auto xs:gap-4 sm:gap-8 lg:gap-16 xs:px-6 sm:px-10 lg:px-0 xs:my-6 sm:my-9 md:my-14">
 				{projects.map(project => (
 					<Project
-						key={project.name}
+						key={project.title}
 						project={project}
 					/>
 				))}

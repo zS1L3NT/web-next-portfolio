@@ -3,8 +3,8 @@ import Head from "next/head"
 import Link from "next/link"
 
 import Project from "@/features/projects/Project"
-import { iProject } from "@/utils/scraper"
-import { Octokit as Github } from "@octokit/core"
+import { iProject } from "@/@types/project"
+import { prisma } from "@/prisma"
 
 type Props = {
 	projects: iProject[]
@@ -30,7 +30,7 @@ const Projects = ({ projects, page, pages }: Props) => {
 				<div className="container grid mx-auto xs:gap-8 sm:gap-10 lg:gap-12 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xs:my-6 sm:my-9 md:my-14">
 					{projects.map(project => (
 						<Project
-							key={project.name}
+							key={project.title}
 							project={project}
 						/>
 					))}
@@ -73,29 +73,26 @@ const Projects = ({ projects, page, pages }: Props) => {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async context => {
-	const github = new Github({ auth: process.env.GITHUB_TOKEN })
 	const page = "page" in context.query ? +context.query.page! : 1
+	const projects = await prisma.project.findMany({
+		skip: (page - 1) * 30,
+		take: 30,
+		orderBy: {
+			updated_at: "desc"
+		}
+	})
 
-	const pages = Math.ceil((await github.request("GET /user")).data.public_repos / 30)
-	const projects = (
-		await github.request("GET /user/repos", {
-			type: "public",
-			page,
-			per_page: 30,
-			sort: "pushed",
-			direction: "desc",
-			topic: "special"
-		})
-	).data
-		.filter(r => !r.fork)
-		.filter(r => r.owner.login === "zS1L3NT")
-		.map(r => ({
-			name: r.name,
-			description: r.description ?? "",
-			topics: r.topics ?? []
-		}))
-
-	return projects.length ? { props: { projects, page, pages } } : { notFound: true }
+	return projects.length
+		? {
+			props: {
+				projects: projects.map(p => ({ ...p, updated_at: null })) as iProject[],
+				page,
+				pages: Math.ceil((await prisma.project.count()) / 30)
+			}
+		}
+		: {
+			notFound: true
+		}
 }
 
 export default Projects

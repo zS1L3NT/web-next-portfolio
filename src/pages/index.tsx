@@ -8,7 +8,8 @@ import Featured from "@/features/index/featured/Featured"
 import Footer from "@/features/index/footer/Footer"
 import Landing from "@/features/index/landing/Landing"
 import Other from "@/features/index/other/Other"
-import scraper, { iProject } from "@/utils/scraper"
+import { iProject } from "@/@types/project"
+import { prisma } from "@/prisma"
 
 type Props = {
 	featured: iProject[]
@@ -41,19 +42,25 @@ const Index = ({ featured, other, updated }: Props) => {
 export const getStaticProps: GetStaticProps<Props> = async () => {
 	return {
 		props: {
-			featured: await Promise.all(
-				["soundroid-v2", "web-formby", "rs-tauri-chess"].map(scraper)
-			),
-			other: await Promise.all(
-				[
-					"ts-discord-soundroid",
+			featured: (await prisma.project.findMany({
+				where: {
+					title: {
+						in: ["soundroid-v2", "web-formby", "rs-tauri-chess"]
+					}
+				}
+			})).map(p => ({ ...p, updated_at: null })) as iProject[],
+			other:(await prisma.project.findMany({
+				where: {
+					title: {
+						in: [					"ts-discord-soundroid",
 					"web-monetary",
 					"deskpower",
 					"web-react-statify",
 					"ts-npm-ytmusic-api",
-					"ts-discord-reminder"
-				].map(scraper)
-			),
+					"ts-discord-reminder"]
+					}
+				}
+			})).map(p => ({ ...p, updated_at: null })) as iProject[],
 			updated: await fetch(
 				"https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main"
 			)

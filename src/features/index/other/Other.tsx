@@ -1,8 +1,7 @@
 import Link from "next/link"
 
-import { iProject } from "@/utils/scraper"
-
 import Project from "./Project"
+import { iProject } from "@/@types/project"
 
 const Other = ({ projects }: { projects: iProject[] }) => {
 	return (
@@ -13,7 +12,7 @@ const Other = ({ projects }: { projects: iProject[] }) => {
 			<div className="container grid mx-auto xs:gap-8 sm:gap-10 lg:gap-12 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xs:px-6 sm:px-10 lg:px-0 xs:my-6 sm:my-9 md:my-14">
 				{projects.map(project => (
 					<Project
-						key={project.name}
+						key={project.title}
 						project={project}
 					/>
 				))}
