@@ -5,6 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 
+import { Prisma } from "@prisma/client"
+
 import { iProject } from "@/@types/project"
 import { PNG_TAGS } from "@/constants"
 import FiltersModal from "@/features/projects/FiltersModal"
@@ -171,16 +173,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 				SELECT DISTINCT UNNEST(tags) AS tag
 				FROM "Project"
 			)
-			WHERE tag
-			IN (${searchTags.join(",")})
+			${searchTags.length ? Prisma.sql`WHERE tag IN (${Prisma.join(searchTags)})` : Prisma.sql``}
 		)
 		(
 			SELECT title, description, tags
 			FROM "Project"
-			WHERE tags @> array(
-				SELECT *
-				FROM selected
-			)
+			${searchTags.length ? Prisma.sql`WHERE tags @> array(SELECT * FROM selected)` : Prisma.sql``}
 			ORDER BY updated_at DESC
 			OFFSET ${(page - 1) * 15}
 			LIMIT 15
@@ -191,10 +189,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 				(
 					SELECT COUNT(*)
 					FROM "Project"
-					WHERE tags @> array(
-						SELECT *
-						FROM selected
-					)
+					${searchTags.length ? Prisma.sql`WHERE tags @> array(SELECT * FROM selected)` : Prisma.sql``}
 				)::TEXT,
 				'',
 				ARRAY(
