@@ -26,8 +26,16 @@
 	src: url(/assets/fonts/RobotoMono-Regular.ttf);
 }
 
-::-webkit-scrollbar {
-	@apply w-0;
+*::-webkit-scrollbar {
+	@apply w-2;
+}
+
+*::-webkit-scrollbar-track {
+	@apply bg-slate-300 rounded;
+}
+
+*::-webkit-scrollbar-thumb {
+	@apply bg-primary-200 rounded;
 }
 
 html,
@@ -47,19 +55,27 @@ canvas {
 		@apply text-blue-500 underline;
 	}
 
-	& h1, h2, h3, h4, h5, h6 {
+	& h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		@apply font-robotomono-regular font-bold border-b border-b-gray-300;
 	}
 
-	& h1, h2 {
+	& h1,
+	h2 {
 		@apply my-3 py-3;
 	}
 
-	& h3, h4 {
+	& h3,
+	h4 {
 		@apply my-2 py-2;
 	}
 
-	& h5, h6 {
+	& h5,
+	h6 {
 		@apply my-1 py-1;
 	}
 

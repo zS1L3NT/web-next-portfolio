@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const time = (ms: number) => new Promise(res => setTimeout(res, ms))
 
-const Typewriter = ({}: {}) => {
+const Typewriter = () => {
 	const [blink, setBlink] = useState(false)
 	const [message, setMessage] = useState("")
 
@@ -11,7 +11,7 @@ const Typewriter = ({}: {}) => {
 			"WorldSkills Web Tech Winner",
 			"Full Stack Web Developer",
 			"Android App Developer",
-			"student from Temasek Poly"
+			"student from Temasek Poly",
 		]
 
 		let cancelled = false
@@ -24,7 +24,7 @@ const Typewriter = ({}: {}) => {
 				if (cancelled) return
 			}
 
-			while (true) {
+			while (!cancelled) {
 				for (const word of words) {
 					for (const letter of word + " ") {
 						setMessage(message => message + letter)
@@ -37,6 +37,7 @@ const Typewriter = ({}: {}) => {
 					if (cancelled) return
 					setBlink(false)
 
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					for (const _ of word + " ") {
 						setMessage(message => message.slice(0, -1))
 						await time(20)

@@ -10,12 +10,12 @@ const Footer = ({ updated }: { updated: string | null }) => {
 						{date.toLocaleDateString("en-SG", {
 							day: "2-digit",
 							month: "long",
-							year: "numeric"
+							year: "numeric",
 						})}
 						{" at "}
 						{date.toLocaleTimeString("en-SG", {
 							hour: "2-digit",
-							minute: "2-digit"
+							minute: "2-digit",
 						})}
 					</>
 				) : (

@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-const AboutMe = ({}: {}) => {
+const AboutMe = () => {
 	return (
 		<section className="w-full bg-white">
 			<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
@@ -32,7 +32,7 @@ const AboutMe = ({}: {}) => {
 						Outside schoolwork, I am usually only either watching KDramas or working on
 						a new side project that I have in mind. Most of my side projects are build
 						using TypeScript or Rust, but I also do enjoy trying out new technologies in
-						the web development space. I wouldn't mind doing mobile app development
+						the web development space. I wouldn&apos;t mind doing mobile app development
 						using Flutter, that is if I find the project interesting.
 					</p>
 				</div>

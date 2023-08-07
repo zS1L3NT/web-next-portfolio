@@ -2,13 +2,14 @@ import { GetStaticProps } from "next"
 import Head from "next/head"
 import { useEffect } from "react"
 
+import { iProject } from "@/@types/project"
 import AboutMe from "@/features/index/about/AboutMe"
 import ContactMe from "@/features/index/contact/ContactMe"
 import Featured from "@/features/index/featured/Featured"
 import Footer from "@/features/index/footer/Footer"
 import Landing from "@/features/index/landing/Landing"
 import Other from "@/features/index/other/Other"
-import scraper, { iProject } from "@/utils/scraper"
+import { prisma } from "@/prisma"
 
 type Props = {
 	featured: iProject[]
@@ -39,29 +40,51 @@ const Index = ({ featured, other, updated }: Props) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
+	const [projects, updated] = await Promise.all([
+		prisma.project.findMany({
+			select: {
+				title: true,
+				description: true,
+				tags: true,
+			},
+			where: {
+				title: {
+					in: [
+						"soundroid-v2",
+						"web-formby",
+						"rs-tauri-chess",
+						"ts-discord-soundroid",
+						"web-monetary",
+						"deskpower",
+						"web-react-statify",
+						"ts-npm-ytmusic-api",
+						"ts-discord-reminder",
+					],
+				},
+			},
+		}),
+		fetch("https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main")
+			.then(res => res.json())
+			.then(res => res.commit.author.date)
+			.catch(() => null),
+	])
+
 	return {
 		props: {
-			featured: await Promise.all(
-				["soundroid-v2", "web-formby", "rs-tauri-chess"].map(scraper)
+			featured: ["soundroid-v2", "web-formby", "rs-tauri-chess"].map(
+				t => projects.find(p => p.title === t)!,
 			),
-			other: await Promise.all(
-				[
-					"ts-discord-soundroid",
-					"web-monetary",
-					"deskpower",
-					"web-react-statify",
-					"ts-npm-ytmusic-api",
-					"ts-discord-reminder"
-				].map(scraper)
-			),
-			updated: await fetch(
-				"https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main"
-			)
-				.then(res => res.json())
-				.then(res => res.commit.author.date)
-				.catch(() => null)
+			other: [
+				"ts-discord-soundroid",
+				"web-monetary",
+				"deskpower",
+				"web-react-statify",
+				"ts-npm-ytmusic-api",
+				"ts-discord-reminder",
+			].map(t => projects.find(p => p.title === t)!),
+			updated,
 		},
-		revalidate: 60
+		revalidate: 60,
 	}
 }
 
