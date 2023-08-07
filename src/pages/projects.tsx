@@ -143,7 +143,7 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 							</Link>
 						))}
 
-					{page === pages ? null : (
+					{page >= pages ? null : (
 						<Link
 							href={getPageLink(page + 1)}
 							className="p-3 font-montserrat-regular hover:shadow-md bg-slate-100">
@@ -195,18 +195,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 		}),
 	])
 
-	return projects.length
-		? {
-				props: {
-					projects,
-					tags,
-					page,
-					pages: Math.ceil(total / 15),
-				},
-		  }
-		: {
-				notFound: true,
-		  }
+	return {
+		props: {
+			projects,
+			tags,
+			page,
+			pages: Math.ceil(total / 15),
+		},
+	}
 }
 
 export default Projects
