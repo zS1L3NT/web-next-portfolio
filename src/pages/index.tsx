@@ -40,28 +40,34 @@ const Index = ({ featured, other, updated }: Props) => {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-	const projects = await prisma.project.findMany({
-		select: {
-			title: true,
-			description: true,
-			tags: true,
-		},
-		where: {
-			title: {
-				in: [
-					"soundroid-v2",
-					"web-formby",
-					"rs-tauri-chess",
-					"ts-discord-soundroid",
-					"web-monetary",
-					"deskpower",
-					"web-react-statify",
-					"ts-npm-ytmusic-api",
-					"ts-discord-reminder",
-				],
+	const [projects, updated] = await Promise.all([
+		prisma.project.findMany({
+			select: {
+				title: true,
+				description: true,
+				tags: true,
 			},
-		},
-	})
+			where: {
+				title: {
+					in: [
+						"soundroid-v2",
+						"web-formby",
+						"rs-tauri-chess",
+						"ts-discord-soundroid",
+						"web-monetary",
+						"deskpower",
+						"web-react-statify",
+						"ts-npm-ytmusic-api",
+						"ts-discord-reminder",
+					],
+				},
+			},
+		}),
+		fetch("https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main")
+			.then(res => res.json())
+			.then(res => res.commit.author.date)
+			.catch(() => null),
+	])
 
 	return {
 		props: {
@@ -76,12 +82,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 				"ts-npm-ytmusic-api",
 				"ts-discord-reminder",
 			].map(t => projects.find(p => p.title === t)!),
-			updated: await fetch(
-				"https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main",
-			)
-				.then(res => res.json())
-				.then(res => res.commit.author.date)
-				.catch(() => null),
+			updated,
 		},
 		revalidate: 60,
 	}

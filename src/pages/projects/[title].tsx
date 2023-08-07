@@ -29,16 +29,16 @@ const Project = ({ project }: Props) => {
 				<h1 className="xs:mt-4 sm:mt-6 lg:mt-8 xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
 					{project.title}
 					<span className="align-middle xs:text-xl sm:text-2xl lg:text-3xl">
-						{SPECIAL_TAGS
-							.filter(t => project.tags.includes(t[0]))
-							.map(([tag, emoji, message]) => (
+						{SPECIAL_TAGS.filter(t => project.tags.includes(t[0])).map(
+							([tag, emoji, message]) => (
 								<span
 									key={tag}
 									title={message}
 									className="inline-block cursor-default ms-2 hover:scale-125">
 									{emoji}
 								</span>
-							))}
+							),
+						)}
 					</span>
 				</h1>
 				{project.monorepo ? (
@@ -104,47 +104,51 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 	const github = new Github({ auth: process.env.GITHUB_TOKEN })
 	const title = context.params!.title as string
 
-	return await prisma.project
-		.findFirstOrThrow({ where: { title } })
-		.then(async project => ({
-			props: {
-				project: {
-					title: project.title,
-					description: project.description ?? "",
-					tags: project.tags ?? [],
-					readme: await fetch(
-						`https://raw.githubusercontent.com/zS1L3NT/${project.title}/main/README.md`,
-					)
-						.then(res => res.text())
-						.catch(() => null),
-					monorepo: await github
-						.request("GET /repos/{owner}/{repo}/contents/{path}", {
-							owner: "zS1L3NT",
-							repo: title,
-							path: ".",
-						})
-						.then(res =>
-							Array.isArray(res.data)
-								? (res.data as any[])
-										.filter(
-											f =>
-												f.type === "dir" &&
-												f.name.includes(title.split("-").at(-1)),
-										)
-										.map(f => f.name)
-								: [],
-						)
-						.then(res => (res.length ? res.sort((a, b) => a.localeCompare(b)) : null)),
-				},
+	const [project, readme, monorepo] = await Promise.all([
+		prisma.project.findFirst({
+			select: {
+				title: true,
+				description: true,
+				tags: true,
 			},
-		}))
-		.catch(e => {
-			console.log(e)
+			where: {
+				title,
+			},
+		}),
+		fetch(`https://raw.githubusercontent.com/zS1L3NT/${title}/main/README.md`)
+			.then(res => res.text())
+			.catch(() => null),
+		github
+			.request("GET /repos/{owner}/{repo}/contents/{path}", {
+				owner: "zS1L3NT",
+				repo: title,
+				path: ".",
+			})
+			.then(res => (Array.isArray(res.data) ? res.data : []))
+			.then(res =>
+				res
+					.filter(f => f.type === "dir" && f.name.includes(title.split("-").at(-1) ?? ""))
+					.map(f => f.name),
+			)
+			.then(res => (res.length ? res.sort((a, b) => a.localeCompare(b)) : null))
+			.catch(() => null),
+	])
 
-			return {
-				notFound: true,
-			}
-		})
+	if (!project) {
+		return {
+			notFound: true,
+		}
+	}
+
+	return {
+		props: {
+			project: {
+				...project,
+				readme,
+				monorepo,
+			},
+		},
+	}
 }
 
 export default Project

@@ -171,7 +171,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 	).filter(t => tags.includes(t))
 
 	const [projects, total] = await Promise.all([
-		await prisma.project.findMany({
+		prisma.project.findMany({
 			select: {
 				title: true,
 				description: true,
@@ -188,7 +188,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async context => {
 			skip: (page - 1) * 15,
 			take: 15,
 		}),
-		await prisma.project.count({
+		prisma.project.count({
 			where: {
 				tags: {
 					hasEvery: searchTags.length ? searchTags : [],
