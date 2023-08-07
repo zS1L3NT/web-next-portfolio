@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation"
 
 import { iProject } from "@/@types/project"
 import { PNG_TAGS } from "@/constants"
+import FiltersModal from "@/features/projects/FiltersModal"
 import Project from "@/features/projects/Project"
 import { prisma } from "@/prisma"
 
@@ -21,16 +22,16 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 
 	const searchTags = (search.get("tags")?.split(",") ?? []).filter(t => tags.includes(t))
 
-	const getRemoveTagLink = (tag: string) => {
+	const getTagsLink = (tags: string[]) => {
 		const newSearch = new URLSearchParams(search.toString())
 
-		if (searchTags.length > 1) {
-			newSearch.set("tags", searchTags.filter(t => t !== tag).join(","))
+		if (tags.length) {
+			newSearch.set("tags", tags.join(","))
 		} else {
 			newSearch.delete("tags")
 		}
 
-		const newSearchString = newSearch.toString()
+		const newSearchString = newSearch.toString().replace(/%2C/g, ",")
 		return "/projects" + (newSearchString.length ? "?" + newSearchString : "")
 	}
 
@@ -43,7 +44,7 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 			newSearch.delete("page")
 		}
 
-		const newSearchString = newSearch.toString()
+		const newSearchString = newSearch.toString().replace(/%2C/g, ",")
 		return "/projects" + (newSearchString.length ? "?" + newSearchString : "")
 	}
 
@@ -63,14 +64,24 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 				</h1>
 				<div className="container mx-auto xs:my-6 sm:my-9 md:my-14">
 					<div className="flex xs:gap-2 sm:gap-3 lg:gap-4 xs:mb-8 sm:mb-10 lg:mb-12">
-						<div className="flex items-center justify-center shadow-md cursor-pointer hover:scale-105 xs:text-xs sm:text-sm xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200 font-montserrat-regular">
+						<button
+							className="flex items-center justify-center shadow-md cursor-pointer hover:scale-105 xs:text-xs sm:text-sm xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200 font-montserrat-regular"
+							type="button"
+							data-modal-target="filters-modal"
+							data-modal-toggle="filters-modal">
 							<Image
 								src="/assets/images/filter.png"
 								alt="Filter"
 								width={16}
 								height={16}
 							/>
-						</div>
+						</button>
+
+						<FiltersModal
+							tags={tags}
+							searchTags={searchTags}
+							getTagsLink={getTagsLink}
+						/>
 
 						{searchTags.map(t => (
 							<div
@@ -87,7 +98,7 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 									height={16}
 								/>
 								{t[0]!.toUpperCase() + t.slice(1)}
-								<Link href={getRemoveTagLink(t)}>
+								<Link href={getTagsLink(searchTags.filter(t_ => t !== t_))}>
 									<Image
 										className="ml-1 cursor-pointer hover:scale-105"
 										src="/assets/images/close.png"

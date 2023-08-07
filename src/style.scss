@@ -26,8 +26,16 @@
 	src: url(/assets/fonts/RobotoMono-Regular.ttf);
 }
 
-::-webkit-scrollbar {
-	@apply w-0;
+*::-webkit-scrollbar {
+	@apply w-2;
+}
+
+*::-webkit-scrollbar-track {
+	@apply bg-slate-300 rounded;
+}
+
+*::-webkit-scrollbar-thumb {
+	@apply bg-primary-200 rounded;
 }
 
 html,
