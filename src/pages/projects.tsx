@@ -1,3 +1,4 @@
+import { Modal } from "flowbite"
 import { GetServerSideProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
@@ -67,8 +68,9 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 						<button
 							className="flex items-center justify-center shadow-md cursor-pointer hover:scale-105 xs:text-xs sm:text-sm xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200 font-montserrat-regular"
 							type="button"
-							data-modal-target="filters-modal"
-							data-modal-toggle="filters-modal">
+							onClick={() =>
+								new Modal(document.getElementById("filters-modal")).toggle()
+							}>
 							<Image
 								src="/assets/images/filter.png"
 								alt="Filter"

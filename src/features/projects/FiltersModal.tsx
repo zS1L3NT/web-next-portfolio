@@ -27,7 +27,7 @@ export default function FiltersModal({
 			data-modal-backdrop="static"
 			data-modal-placement="top-center"
 			className="fixed top-0 left-0 right-0 z-50 hidden w-full h-full overflow-x-hidden overflow-y-auto xs:p-4 sm:p-6 lg:p-8 backdrop-brightness-75 backdrop-blur-sm md:inset-0">
-			<div className="relative w-full max-w-3xl max-h-full">
+			<div className="relative w-full h-full max-w-3xl">
 				<div className="flex flex-col h-full shadow-md xs:p-4 sm:p-5 lg:p-6 bg-slate-200">
 					<h1 className="xs:text-xl sm:text-2xl lg:text-3xl w-fit font-montserrat-bold">
 						Filters
