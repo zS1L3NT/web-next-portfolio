@@ -1,3 +1,4 @@
+import { Modal } from "flowbite"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -73,13 +74,13 @@ export default function FiltersModal({
 					</div>
 					<div className="flex justify-end gap-4 px-4 mt-6">
 						<button
-							data-modal-hide="filters-modal"
+							onClick={() => new Modal(document.getElementById("filters-modal")).hide()}
 							className="block px-3 py-2 border text-primary-400 xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 border-primary-400">
 							Cancel
 						</button>
 						<Link
 							href={getTagsLink(selectedTags)}
-							data-modal-hide="filters-modal"
+							onClick={() => new Modal(document.getElementById("filters-modal")).hide()}
 							className="block px-3 py-2 text-white xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 hover:shadow-primary-400 bg-primary-400">
 							Save
 						</Link>
