@@ -160,49 +160,58 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 
 export const getServerSideProps: GetServerSideProps<Props> = async context => {
 	const page = "page" in context.query ? +context.query.page! : 1
+	const searchTags = Array.isArray(context.query.tags)
+		? context.query.tags
+		: context.query.tags?.split(",") ?? []
 
-	const tags = (
-		(await prisma.$queryRaw`SELECT DISTINCT UNNEST(tags) AS tag, COUNT(*) AS frequency FROM "Project" GROUP BY tag ORDER BY frequency DESC`) as any[]
-	).map(t => t.tag) as string[]
-	const searchTags = (
-		Array.isArray(context.query.tags)
-			? context.query.tags
-			: context.query.tags?.split(",") ?? []
-	).filter(t => tags.includes(t))
+	const projects = await prisma.$queryRaw<iProject[]>`
+		WITH selected AS (
+			SELECT *
+			FROM (
+				SELECT DISTINCT UNNEST(tags) AS tag
+				FROM "Project"
+			)
+			WHERE tag
+			IN (${searchTags.join(",")})
+		)
+		(
+			SELECT title, description, tags
+			FROM "Project"
+			WHERE tags @> array(
+				SELECT *
+				FROM selected
+			)
+			ORDER BY updated_at DESC
+			OFFSET ${(page - 1) * 15}
+			LIMIT 15
+		)
+		UNION
+		(
+			SELECT
+				(
+					SELECT COUNT(*)
+					FROM "Project"
+					WHERE tags @> array(
+						SELECT *
+						FROM selected
+					)
+				)::TEXT,
+				'',
+				ARRAY(
+					SELECT DISTINCT UNNEST(tags)
+					FROM "Project"
+				)
+		)
+	`
 
-	const [projects, total] = await Promise.all([
-		prisma.project.findMany({
-			select: {
-				title: true,
-				description: true,
-				tags: true,
-			},
-			where: {
-				tags: {
-					hasEvery: searchTags.length ? searchTags : [],
-				},
-			},
-			orderBy: {
-				updated_at: "desc",
-			},
-			skip: (page - 1) * 15,
-			take: 15,
-		}),
-		prisma.project.count({
-			where: {
-				tags: {
-					hasEvery: searchTags.length ? searchTags : [],
-				},
-			},
-		}),
-	])
+	const { title: total, tags } = projects.pop()!
 
 	return {
 		props: {
 			projects,
 			tags,
 			page,
-			pages: Math.ceil(total / 15),
+			pages: Math.ceil(+total / 16),
 		},
 	}
 }
