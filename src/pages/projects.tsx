@@ -33,6 +33,7 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 		} else {
 			newSearch.delete("tags")
 		}
+		newSearch.delete("page")
 
 		const newSearchString = newSearch.toString().replace(/%2C/g, ",")
 		return "/projects" + (newSearchString.length ? "?" + newSearchString : "")
