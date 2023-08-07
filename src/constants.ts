@@ -1,6 +1,13 @@
 export const PNG_TAGS = ["worldskills", "octokit"]
 
-export const HIDDEN_TAGS = ["special", "hackathon", "unfinished", "deprecated", "broken", "solutions"]
+export const HIDDEN_TAGS = [
+	"special",
+	"hackathon",
+	"unfinished",
+	"deprecated",
+	"broken",
+	"solutions",
+]
 
 export const SPECIAL_TAGS: [string, string, string][] = [
 	["special", "⭐", "This is a special repository!"],

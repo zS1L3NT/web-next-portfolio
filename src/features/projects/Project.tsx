@@ -12,16 +12,16 @@ const Project = ({ project }: { project: iProject }) => {
 			<div>
 				<h1 className="xs:text-md sm:text-lg lg:text-xl font-montserrat-bold">
 					{project.title}
-					{SPECIAL_TAGS
-						.filter(t => project.tags.includes(t[0]))
-						.map(([tag, emoji, message]) => (
+					{SPECIAL_TAGS.filter(t => project.tags.includes(t[0])).map(
+						([tag, emoji, message]) => (
 							<span
 								key={tag}
 								title={message}
 								className="inline-block ms-1 hover:scale-125">
 								{emoji}
 							</span>
-						))}
+						),
+					)}
 				</h1>
 				<p className="mt-1 font-montserrat-regular xs:text-sm sm:text-base lg:text-md">
 					{project.description}
