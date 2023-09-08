@@ -47,7 +47,7 @@ const _Document = () => {
 				/>
 				<meta
 					property="og:image"
-					content="http://www.zectan.com/assets/profile.jpg"
+					content="http://www.zectan.com/assets/images/profile.jpg"
 				/>
 			</Head>
 			<body>
