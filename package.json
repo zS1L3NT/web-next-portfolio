@@ -35,7 +35,7 @@
 		"eslint-config-prettier": "latest",
 		"eslint-plugin-react": "latest",
 		"eslint-plugin-simple-import-sort": "latest",
-		"postcss": "^8.4.21",
+		"postcss": "^8.4.31",
 		"prettier": "latest",
 		"prisma": "5.1.1",
 		"tailwindcss": "^3.3.1"
