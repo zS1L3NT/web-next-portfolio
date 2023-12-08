@@ -27,7 +27,7 @@ const Icon = ({
 		linkedin: (
 			<Link
 				className="z-0 block"
-				href="https://www.linkedin.com/in/zechariah-sg"
+				href="https://www.linkedin.com/in/zectan"
 				target="_blank"
 				rel="noreferrer">
 				<svg
