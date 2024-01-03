@@ -1,7 +1,7 @@
 {
 	"name": "web-next-portfolio",
 	"description": "My Portfolio Website",
-	"author": "zS1L3NT <zechariahtan144@gmail.com> (https://www.zectan.com)",
+	"author": "zS1L3NT <dev@zectan.com> (https://www.zectan.com)",
 	"license": "GPL-3.0",
 	"scripts": {
 		"dev": "next dev",
@@ -12,12 +12,12 @@
 	"dependencies": {
 		"@octokit/core": "^4.2.0",
 		"@prisma/client": "5.1.1",
-		"@types/node": "18.15.11",
 		"@types/react": "18.0.31",
 		"@types/react-dom": "^18.0.11",
 		"flowbite": "^1.8.1",
 		"framer-motion": "^6.5.1",
 		"next": "13.2.4",
+		"posthog-js": "^1.96.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-markdown": "^8.0.6",
@@ -30,6 +30,7 @@
 		"@typescript-eslint/eslint-plugin": "latest",
 		"@typescript-eslint/parser": "latest",
 		"autoprefixer": "^10.4.14",
+		"bun-types": "^1.0.20",
 		"eslint": "^8.46.0",
 		"eslint-config-next": "latest",
 		"eslint-config-prettier": "latest",
