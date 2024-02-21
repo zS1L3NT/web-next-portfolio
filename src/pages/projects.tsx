@@ -12,6 +12,7 @@ import { PNG_TAGS } from "@/constants"
 import FiltersModal from "@/features/projects/FiltersModal"
 import Project from "@/features/projects/Project"
 import { prisma } from "@/prisma"
+import cn from "@/utils/cn"
 
 type Props = {
 	projects: iProject[]
@@ -140,10 +141,10 @@ const Projects = ({ projects, tags, page, pages }: Props) => {
 							<Link
 								key={i}
 								href={getPageLink(i)}
-								className={
-									"font-montserrat-regular p-3 hover:shadow-md " +
-									(page === i ? "bg-primary-400 text-white" : "bg-slate-100")
-								}>
+								className={cn(
+									"font-montserrat-regular p-3 hover:shadow-md ",
+									page === i ? "bg-primary-400 text-white" : "bg-slate-100",
+								)}>
 								{i}
 							</Link>
 						))}

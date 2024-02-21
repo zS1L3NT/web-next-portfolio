@@ -5,10 +5,7 @@ import { iProject } from "@/@types/project"
 
 const Project = ({ project }: { project: iProject }) => {
 	return (
-		<div
-			className={
-				"group even:lg:text-end even:lg:flex-row-reverse container flex flex-col items-center sm:gap-4 md:gap-8 lg:gap-12 lg:h-72 lg:flex-row"
-			}>
+		<div className="container flex flex-col items-center group even:lg:text-end even:lg:flex-row-reverse sm:gap-4 md:gap-8 lg:gap-12 lg:h-72 lg:flex-row">
 			<Link href={"/projects/" + project.title}>
 				<Image
 					className="hover:scale-105 sm:w-full md:w-full lg:w-fit lg:h-72"
