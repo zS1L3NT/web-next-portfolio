@@ -1,5 +1,3 @@
-export const PNG_TAGS = ["worldskills", "octokit"]
-
 export const HIDDEN_TAGS = [
 	"special",
 	"hackathon",

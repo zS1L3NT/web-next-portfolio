@@ -1,4 +1,11 @@
-const Footer = ({ updated }: { updated: string | null }) => {
+export default async function Footer() {
+	const updated = await fetch(
+		"https://api.github.com/repos/zS1L3NT/web-next-portfolio/commits/main",
+		{ next: { revalidate: 24 * 60 * 60 } },
+	)
+		.then(res => res.json())
+		.then(res => res.commit.author.date)
+		.catch(() => null)
 	const date = new Date(updated ?? Date.now())
 
 	return (
@@ -25,5 +32,3 @@ const Footer = ({ updated }: { updated: string | null }) => {
 		</footer>
 	)
 }
-
-export default Footer

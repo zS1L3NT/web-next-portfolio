@@ -1,11 +1,13 @@
+"use client"
+
 import { Modal } from "flowbite"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
-import { HIDDEN_TAGS, PNG_TAGS, TAG_CATEGORIES } from "@/constants"
+import { HIDDEN_TAGS, TAG_CATEGORIES } from "@/constants"
 
-export default function FiltersModal({
+function FiltersModal({
 	tags,
 	searchTags,
 	getTagsLink,
@@ -69,9 +71,7 @@ export default function FiltersModal({
 												key={t}
 												title={t[0]!.toUpperCase() + t.substring(1)}
 												className="inline-block mx-2 xs:scale-75 sm:scale-90"
-												src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.${
-													PNG_TAGS.includes(t) ? "png" : "svg"
-												}`}
+												src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
 												alt={t + " icon"}
 												width={25}
 												height={25}
@@ -104,6 +104,78 @@ export default function FiltersModal({
 					</div>
 				</div>
 			</div>
+		</div>
+	)
+}
+
+export default function FiltersButton({
+	searchParams,
+	tags,
+}: {
+	searchParams: Record<string, string>
+	tags: string[]
+}) {
+	const search = new URLSearchParams(searchParams)
+	const searchTags = (search.get("tags")?.split(",") ?? []).filter(t => tags.includes(t))
+
+	const getTagsLink = (tags: string[]) => {
+		const newSearch = new URLSearchParams(search.toString())
+
+		if (tags.length) {
+			newSearch.set("tags", tags.join(","))
+		} else {
+			newSearch.delete("tags")
+		}
+		newSearch.delete("page")
+
+		const newSearchString = newSearch.toString().replace(/%2C/g, ",")
+		return "/projects" + (newSearchString.length ? "?" + newSearchString : "")
+	}
+
+	return (
+		<div className="flex xs:gap-2 sm:gap-3 lg:gap-4 xs:mb-8 sm:mb-10 lg:mb-12">
+			<button
+				className="flex items-center justify-center shadow-md cursor-pointer hover:scale-105 xs:text-xs sm:text-sm xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200 font-montserrat-regular"
+				type="button"
+				onClick={() => new Modal(document.getElementById("filters-modal")).toggle()}>
+				<Image
+					src="/assets/images/filter.png"
+					alt="Filter"
+					width={16}
+					height={16}
+				/>
+			</button>
+
+			<FiltersModal
+				tags={tags}
+				searchTags={searchTags}
+				getTagsLink={getTagsLink}
+			/>
+
+			{searchTags.map(t => (
+				<div
+					key={t}
+					className="flex items-center gap-2 shadow-md xs:text-xs sm:text-sm xs:py-2 sm:py-3 xs:px-3 sm:px-4 font-montserrat-regular bg-slate-200">
+					<Image
+						title={t[0]!.toUpperCase() + t.slice(1)}
+						className="inline-block"
+						src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
+						alt={t + " icon"}
+						width={16}
+						height={16}
+					/>
+					{t[0]!.toUpperCase() + t.slice(1)}
+					<Link href={getTagsLink(searchTags.filter(t_ => t !== t_))}>
+						<Image
+							className="ml-1 cursor-pointer hover:scale-105"
+							src="/assets/images/close.png"
+							alt="Filter"
+							width={13}
+							height={13}
+						/>
+					</Link>
+				</div>
+			))}
 		</div>
 	)
 }

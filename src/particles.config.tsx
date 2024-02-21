@@ -1,3 +1,5 @@
+import { ISourceOptions } from "tsparticles-engine/types/Types/ISourceOptions"
+
 export default {
 	particles: {
 		number: {
@@ -106,4 +108,4 @@ export default {
 		},
 	},
 	retina_detect: true,
-} as const
+} satisfies ISourceOptions

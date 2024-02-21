@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { iProject } from "@/@types/project"
+import getProjects from "@/utils/getProjects"
 
 const Project = ({ project }: { project: iProject }) => {
 	return (
@@ -44,4 +45,24 @@ const Project = ({ project }: { project: iProject }) => {
 	)
 }
 
-export default Project
+export default async function Featured({ names }: { names: string[] }) {
+	const projects = await getProjects()
+
+	return (
+		<section className="w-100">
+			<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
+				Featured Projects
+			</h1>
+			<div className="container flex flex-col mx-auto xs:gap-4 sm:gap-8 lg:gap-16 xs:px-6 sm:px-10 lg:px-0 xs:my-6 sm:my-9 md:my-14">
+				{projects
+					.filter(p => names.includes(p.title))
+					.map(project => (
+						<Project
+							key={project.title}
+							project={project}
+						/>
+					))}
+			</div>
+		</section>
+	)
+}
