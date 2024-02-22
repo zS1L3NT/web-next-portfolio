@@ -148,9 +148,12 @@ export default async function Page() {
 									/>
 
 									<div className="flex flex-col justify-center flex-1 xs:px-2 xs:py-4 sm:p-4 lg:p-0">
-										<h1 className="font-montserrat-bold xs:text-xl sm:text-2xl lg:text-3xl">
+										<Link
+											href={`https://github.com/zS1L3NT/${project.title}`}
+											target="_blank"
+											className="font-montserrat-bold xs:text-xl sm:text-2xl lg:text-3xl hover:text-secondary-400">
 											{project.title}
-										</h1>
+										</Link>
 										<div className="flex flex-wrap mt-2 group-even:lg:justify-end gap-x-3 gap-y-1 xs:mb-4 sm:mb-5 lg:mb-6">
 											{project.tags.map(t => (
 												<TagImage
@@ -185,9 +188,11 @@ export default async function Page() {
 								].includes(p.title),
 							)
 							.map(project => (
-								<div
+								<Link
 									key={project.title}
-									className="flex flex-col justify-between h-full gap-4 shadow-md xs:p-4 sm:p-5 lg:p-6 shadow-slate-100 bg-slate-100 ">
+									href={`https://github.com/zS1L3NT/${project.title}`}
+									target="_blank"
+									className="flex flex-col justify-between h-full gap-4 shadow-md hover:scale-105 hover:shadow-slate-300 xs:p-4 sm:p-5 lg:p-6 shadow-slate-100 bg-slate-100 ">
 									<div>
 										<h1 className="xs:text-md sm:text-lg lg:text-xl font-montserrat-bold">
 											{project.title}
@@ -204,7 +209,7 @@ export default async function Page() {
 											/>
 										))}
 									</div>
-								</div>
+								</Link>
 							))}
 					</div>
 					<Link
