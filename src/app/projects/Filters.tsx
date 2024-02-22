@@ -53,6 +53,10 @@ export default function Filters({ tags, searchTags }: { tags: string[]; searchTa
 		setSelectedTags(searchTags)
 	}, [searchTags])
 
+	useEffect(() => {
+		document.body.style.overflowY = isOpen ? "hidden" : "auto"
+	}, [isOpen])
+
 	const getTagsLink = (tags: string[]) => {
 		return "/projects" + (tags.length ? "?tags=" + tags.join(",") : "")
 	}
