@@ -45,23 +45,37 @@ const Checkbox = ({
 	)
 }
 
-export default function Filters({ tags, searchTags }: { tags: string[]; searchTags: string[] }) {
+export default function Filters({
+	projectsTags,
+	tags,
+}: {
+	projectsTags: string[]
+	tags: string[]
+}) {
 	const [isOpen, setIsOpen] = useState(false)
-	const [selectedTags, setSelectedTags] = useState<string[]>(searchTags)
+	const [selectedTags, setSelectedTags] = useState<string[]>(tags)
 
 	useEffect(() => {
-		setSelectedTags(searchTags)
-	}, [searchTags])
+		setSelectedTags(tags)
+	}, [tags])
 
 	useEffect(() => {
 		document.body.style.overflowY = isOpen ? "hidden" : "auto"
 	}, [isOpen])
 
-	const getTagsLink = (tags: string[]) => {
-		return "/projects" + (tags.length ? "?tags=" + tags.join(",") : "")
+	const getFilterLink = (tags: string[]) => {
+		const search = new URLSearchParams(location.search)
+
+		if (tags.length) {
+			search.set("tags", tags.join(","))
+		} else {
+			search.delete("tags")
+		}
+
+		return "/projects?" + (search + "").replaceAll("%2C", ",")
 	}
 
-	const OTHER_TAGS = tags.filter(
+	const OTHER_TAGS = projectsTags.filter(
 		t =>
 			!TAG_CATEGORIES.map(c => c[1])
 				.flat()
@@ -69,16 +83,16 @@ export default function Filters({ tags, searchTags }: { tags: string[]; searchTa
 	)
 
 	return (
-		<div className="flex xs:gap-2 sm:gap-3 lg:gap-4 xs:mb-8 sm:mb-10 lg:mb-12">
+		<div className="flex flex-wrap xs:gap-2 sm:gap-3 lg:gap-4 xs:mb-8 sm:mb-10 lg:mb-12">
 			<button
-				className="flex items-center justify-center shadow-md cursor-pointer hover:scale-105 xs:text-xs sm:text-sm xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200 font-montserrat-regular"
+				className="shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200 font-montserrat-regular"
 				type="button"
 				onClick={() => setIsOpen(true)}>
 				<Image
-					src="/assets/images/filter.png"
+					src="/assets/images/filter.svg"
 					alt="Filter"
-					width={16}
-					height={16}
+					width={20}
+					height={20}
 				/>
 			</button>
 
@@ -139,7 +153,7 @@ export default function Filters({ tags, searchTags }: { tags: string[]; searchTa
 										Cancel
 									</button>
 									<Link
-										href={getTagsLink(selectedTags)}
+										href={getFilterLink(selectedTags)}
 										onClick={() => setIsOpen(false)}
 										className="block px-3 py-2 text-white xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 hover:shadow-primary-400 bg-primary-400">
 										Save
@@ -151,7 +165,7 @@ export default function Filters({ tags, searchTags }: { tags: string[]; searchTa
 				</AnimatePresence>
 			</div>
 
-			{searchTags.map(t => (
+			{tags.map(t => (
 				<div
 					key={t}
 					className="flex items-center gap-2 shadow-md xs:text-xs sm:text-sm xs:py-2 sm:py-3 xs:px-3 sm:px-4 font-montserrat-regular bg-slate-200">
@@ -164,13 +178,13 @@ export default function Filters({ tags, searchTags }: { tags: string[]; searchTa
 						height={16}
 					/>
 					{t[0]!.toUpperCase() + t.slice(1)}
-					<Link href={getTagsLink(searchTags.filter(t_ => t !== t_))}>
+					<Link href={getFilterLink(tags.filter(t_ => t !== t_))}>
 						<Image
 							className="ml-1 cursor-pointer hover:scale-105"
-							src="/assets/images/close.png"
-							alt="Filter"
-							width={13}
-							height={13}
+							src="/assets/images/close.svg"
+							alt="Close"
+							width={16}
+							height={16}
 						/>
 					</Link>
 				</div>

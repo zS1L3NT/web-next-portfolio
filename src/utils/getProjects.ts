@@ -2,7 +2,9 @@ export type Project = {
 	title: string
 	description: string
 	tags: string[]
+	updated: number
 }
+
 export default async (): Promise<Project[]> => {
 	const time = new Date().toLocaleString("en-SG")
 
@@ -23,6 +25,7 @@ export default async (): Promise<Project[]> => {
 						title: p.name,
 						description: p.description || "",
 						tags: (p.topics || []) as string[],
+						updated: new Date(p.pushed_at).getTime(),
 					})),
 				)),
 		)

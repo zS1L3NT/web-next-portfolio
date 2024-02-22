@@ -9,16 +9,29 @@ import { Project } from "@/utils/getProjects"
 
 export default function Projects({
 	projects,
-	searchTags,
+	tags,
+	order,
+	orderBy,
 }: {
 	projects: Project[]
-	searchTags: string[]
+	tags: string[]
+	order: string
+	orderBy: string
 }) {
 	return (
 		<div className="grid xs:gap-8 sm:gap-10 lg:gap-12 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 			<AnimatePresence>
-				{projects
-					.filter(p => searchTags.every(t => p.tags.includes(t)))
+				{[...projects]
+					.sort((a, b) =>
+						orderBy === "title"
+							? order === "asc"
+								? a.title.localeCompare(b.title)
+								: b.title.localeCompare(a.title)
+							: order === "asc"
+								? a.updated - b.updated
+								: b.updated - a.updated,
+					)
+					.filter(p => tags.every(t => p.tags.includes(t)))
 					.map(project => (
 						<motion.div
 							key={project.title}
