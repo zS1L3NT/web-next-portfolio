@@ -4,7 +4,6 @@ import { PropsWithChildren } from "react"
 import "@/style.scss"
 
 export const metadata: Metadata = {
-	metadataBase: new URL("http://localhost:3000"),
 	icons: {
 		icon: "/favicon.ico",
 		apple: "/favicon.ico",
