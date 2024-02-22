@@ -1,27 +1,30 @@
-import { cache } from "react"
-
-const getProjects = cache(async () => {
+export default async () => {
 	const time = Date.now()
-	console.time(`getProjects-${time}`)
+	console.log("fetching projects...")
 
-	const projects = []
-
+	const repositories = []
 	do {
-		projects.push(
+		repositories.push(
 			...(await fetch(
-				`https://api.github.com/users/zS1L3NT/repos?page=${Math.floor(projects.length / 100) + 1}&per_page=100`,
-				{ headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` } },
+				`https://api.github.com/users/zS1L3NT/repos?page=${Math.floor(repositories.length / 100) + 1}&per_page=100`,
+				{
+					headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
+					next: { tags: ["cached"] },
+				},
 			).then(res => res.json())),
 		)
-	} while (projects.length % 100 === 0 && projects.length !== 0)
+	} while (repositories.length % 100 === 0 && repositories.length !== 0)
 
-	const rest = await Promise.all(
-		projects.map(async p => {
+	const projects = await Promise.all(
+		repositories.map(async p => {
 			let readme = null
 			try {
 				readme = await fetch(
 					`https://raw.githubusercontent.com/zS1L3NT/${p.name}/main/README.md`,
-					{ headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` } },
+					{
+						headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
+						next: { tags: ["cached"] },
+					},
 				).then(res => res.text())
 			} catch {
 				/* */
@@ -37,8 +40,6 @@ const getProjects = cache(async () => {
 		}),
 	)
 
-	console.timeEnd(`getProjects-${time}`)
-	return rest
-})
-
-export default getProjects
+	console.log(`fetched projects in ${Date.now() - time}ms`)
+	return projects
+}
