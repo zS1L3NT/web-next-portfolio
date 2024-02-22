@@ -1,45 +1,34 @@
-export default async () => {
-	const time = Date.now()
-	console.log("fetching projects...")
+export type Project = {
+	title: string
+	description: string
+	tags: string[]
+}
 
-	const repositories = []
+export default async (): Promise<Project[]> => {
+	const time = new Date().toLocaleString("en-SG")
+
+	console.time(`caching at "${time}" took`)
+	const projects = []
 	do {
-		repositories.push(
+		projects.push(
 			...(await fetch(
-				`https://api.github.com/users/zS1L3NT/repos?page=${Math.floor(repositories.length / 100) + 1}&per_page=100`,
+				`https://api.github.com/users/zS1L3NT/repos?page=${Math.floor(projects.length / 100) + 1}&per_page=100`,
 				{
 					headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
 					next: { tags: ["cached"] },
 				},
-			).then(res => res.json())),
+			)
+				.then(res => res.json())
+				.then(projects =>
+					projects.map((p: any) => ({
+						title: p.name,
+						description: p.description || "",
+						tags: (p.topics || []) as string[],
+					})),
+				)),
 		)
-	} while (repositories.length % 100 === 0 && repositories.length !== 0)
+	} while (projects.length % 100 === 0 && projects.length !== 0)
+	console.timeEnd(`caching at "${time}" took`)
 
-	const projects = await Promise.all(
-		repositories.map(async p => {
-			let readme = null
-			try {
-				readme = await fetch(
-					`https://raw.githubusercontent.com/zS1L3NT/${p.name}/main/README.md`,
-					{
-						headers: { Authorization: `token ${process.env.GITHUB_TOKEN}` },
-						next: { tags: ["cached"] },
-					},
-				).then(res => res.text())
-			} catch {
-				/* */
-			}
-
-			return {
-				title: p.name,
-				description: p.description || "",
-				homepage: p.homepage || "",
-				tags: (p.topics || []) as string[],
-				readme: readme ? readme.indexOf("![License]") > -1 : false,
-			}
-		}),
-	)
-
-	console.log(`fetched projects in ${Date.now() - time}ms`)
 	return projects
 }
