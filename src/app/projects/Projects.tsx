@@ -31,7 +31,7 @@ export default function Projects({
 							<Link
 								href={`https://github.com/zS1L3NT/${project.title}`}
 								target="_blank"
-								className="xs:p-4 sm:p-5 lg:p-6 size-full">
+								className="flex flex-col justify-between gap-4 xs:p-4 sm:p-5 lg:p-6 size-full">
 								<div>
 									<h1 className="xs:text-md sm:text-lg lg:text-xl font-montserrat-bold">
 										{project.title}
