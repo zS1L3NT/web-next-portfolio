@@ -7,7 +7,7 @@ import Link from "next/link"
 import { HIDDEN_TAGS, SPECIAL_TAGS } from "@/constants"
 import { Project } from "@/utils/getProjects"
 
-import FiltersButton from "./Filters"
+import Filters from "./Filters"
 
 export default function ClientPage({
 	searchParams,
@@ -31,7 +31,7 @@ export default function ClientPage({
 				Projects
 			</h1>
 			<div className="container mx-auto xs:my-6 sm:my-9 md:my-14">
-				<FiltersButton
+				<Filters
 					searchParams={searchParams}
 					tags={tags}
 				/>
@@ -43,8 +43,10 @@ export default function ClientPage({
 							.map(project => (
 								<motion.div
 									key={project.title}
-									layout
 									layoutId={project.title}
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									exit={{ opacity: 0 }}
 									className="flex flex-col justify-between h-full gap-4 shadow-md framer xs:p-4 sm:p-5 lg:p-6 shadow-slate-100 bg-slate-100">
 									<div>
 										<h1 className="xs:text-md sm:text-lg lg:text-xl font-montserrat-bold">
