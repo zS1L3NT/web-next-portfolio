@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import TagImage from "@/components/TagImage"
 import cn from "@/utils/cn"
 import getProjects from "@/utils/getProjects"
 
@@ -152,14 +153,9 @@ export default async function Page() {
 										</h1>
 										<div className="flex flex-wrap mt-2 group-even:lg:justify-end gap-x-3 gap-y-1 xs:mb-4 sm:mb-5 lg:mb-6">
 											{project.tags.map(t => (
-												<Image
+												<TagImage
 													key={t}
-													title={t[0]!.toUpperCase() + t.substring(1)}
-													className="inline-block"
-													src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
-													alt={t + " icon"}
-													width={30}
-													height={30}
+													tag={t}
 												/>
 											))}
 										</div>
@@ -202,14 +198,9 @@ export default async function Page() {
 									</div>
 									<div className="flex flex-wrap gap-3">
 										{project.tags.map(t => (
-											<Image
+											<TagImage
 												key={t}
-												title={t[0]!.toUpperCase() + t.slice(1)}
-												className="inline-block"
-												src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
-												alt={t + " icon"}
-												width={25}
-												height={25}
+												tag={t}
 											/>
 										))}
 									</div>

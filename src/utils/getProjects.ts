@@ -3,7 +3,6 @@ export type Project = {
 	description: string
 	tags: string[]
 }
-
 export default async (): Promise<Project[]> => {
 	const time = new Date().toLocaleString("en-SG")
 

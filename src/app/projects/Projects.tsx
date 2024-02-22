@@ -1,8 +1,8 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import Image from "next/image"
 
+import TagImage from "@/components/TagImage"
 import { HIDDEN_TAGS, SPECIAL_TAGS } from "@/constants"
 import { Project } from "@/utils/getProjects"
 
@@ -48,14 +48,9 @@ export default function Projects({
 								{project.tags
 									.filter(t => !HIDDEN_TAGS.includes(t))
 									.map(t => (
-										<Image
+										<TagImage
 											key={t}
-											title={t[0]!.toUpperCase() + t.substring(1)}
-											className="inline-block xs:scale-75 sm:scale-90"
-											src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
-											alt={t + " icon"}
-											width={25}
-											height={25}
+											tag={t}
 										/>
 									))}
 							</div>
