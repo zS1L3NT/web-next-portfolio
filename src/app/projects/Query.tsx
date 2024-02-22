@@ -45,12 +45,16 @@ const Checkbox = ({
 	)
 }
 
-export default function Filters({
+export default function Query({
 	projectsTags,
 	tags,
+	order,
+	orderBy,
 }: {
 	projectsTags: string[]
 	tags: string[]
+	order: string
+	orderBy: string
 }) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectedTags, setSelectedTags] = useState<string[]>(tags)
@@ -58,10 +62,6 @@ export default function Filters({
 	useEffect(() => {
 		setSelectedTags(tags)
 	}, [tags])
-
-	useEffect(() => {
-		document.body.style.overflowY = isOpen ? "hidden" : "auto"
-	}, [isOpen])
 
 	const getFilterLink = (tags: string[]) => {
 		const search = new URLSearchParams(location.search)
@@ -75,6 +75,15 @@ export default function Filters({
 		return "/projects?" + (search + "").replaceAll("%2C", ",")
 	}
 
+	const getSortLink = (order: string, orderBy: string) => {
+		const search = new URLSearchParams(location.search)
+
+		search.set("orderBy", orderBy)
+		search.set("order", order)
+
+		return "/projects?" + (search + "").replaceAll("%2C", ",")
+	}
+
 	const OTHER_TAGS = projectsTags.filter(
 		t =>
 			!TAG_CATEGORIES.map(c => c[1])
@@ -83,18 +92,111 @@ export default function Filters({
 	)
 
 	return (
-		<div className="flex flex-wrap xs:gap-2 sm:gap-3 lg:gap-4 xs:mb-8 sm:mb-10 lg:mb-12">
-			<button
-				className="shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200 font-montserrat-regular"
-				type="button"
-				onClick={() => setIsOpen(true)}>
-				<Image
-					src="/assets/images/filter.svg"
-					alt="Filter"
-					width={20}
-					height={20}
-				/>
-			</button>
+		<div className="container mx-auto xs:my-6 sm:my-9 md:my-14">
+			<div className="flex xs:gap-2 sm:gap-3 lg:gap-4 xs:mb-2 sm:mb-3 lg:mb-4">
+				<button
+					className="shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200"
+					type="button"
+					onClick={() => setIsOpen(true)}>
+					<Image
+						src="/assets/images/filter.svg"
+						alt="Filter"
+						width={20}
+						height={20}
+					/>
+				</button>
+
+				<div className="flex">
+					<Link
+						href={getSortLink(order, "date")}
+						className={cn(
+							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200",
+							orderBy === "date" ? "bg-primary-400" : "bg-slate-200",
+						)}>
+						<Image
+							src="/assets/images/sort-date.svg"
+							alt="Filter"
+							width={20}
+							height={20}
+							className={cn(orderBy === "date" ? "invert" : "")}
+						/>
+					</Link>
+
+					<Link
+						href={getSortLink(order, "title")}
+						className={cn(
+							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200",
+							orderBy === "title" ? "bg-primary-400" : "bg-slate-200",
+						)}>
+						<Image
+							src="/assets/images/sort-title.svg"
+							alt="Filter"
+							width={20}
+							height={20}
+							className={cn(orderBy === "title" ? "invert" : "")}
+						/>
+					</Link>
+				</div>
+
+				<div className="flex">
+					<Link
+						href={getSortLink("asc", orderBy)}
+						className={cn(
+							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200",
+							order === "asc" ? "bg-primary-400" : "bg-slate-200",
+						)}>
+						<p
+							className={cn(
+								"xs:text-sm sm:text-base lg:text-md font-montserrat-regular",
+								order === "asc" ? "text-white" : "",
+							)}>
+							Ascending
+						</p>
+					</Link>
+
+					<Link
+						href={getSortLink("desc", orderBy)}
+						className={cn(
+							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200",
+							order === "desc" ? "bg-primary-400" : "bg-slate-200",
+						)}>
+						<p
+							className={cn(
+								"xs:text-sm sm:text-base lg:text-md font-montserrat-regular",
+								order === "desc" ? "text-white" : "",
+							)}>
+							Descending
+						</p>
+					</Link>
+				</div>
+			</div>
+
+			<div className="flex flex-wrap xs:gap-2 sm:gap-3 lg:gap-4">
+				{tags.map(t => (
+					<div
+						key={t}
+						className="flex items-center gap-2 shadow-md xs:text-xs sm:text-sm xs:py-2 sm:py-3 xs:px-3 sm:px-4 font-montserrat-regular bg-slate-200">
+						<Image
+							title={t[0]!.toUpperCase() + t.slice(1)}
+							className="inline-block"
+							src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
+							alt={t + " icon"}
+							width={16}
+							height={16}
+						/>
+						{t[0]!.toUpperCase() + t.slice(1)}
+						<Link href={getFilterLink(tags.filter(t_ => t !== t_))}>
+							<Image
+								className="ml-1 cursor-pointer hover:scale-105"
+								src="/assets/images/close.svg"
+								alt="Close"
+								width={16}
+								height={16}
+							/>
+						</Link>
+					</div>
+				))}
+			</div>
 
 			<div
 				className={cn(
@@ -164,31 +266,6 @@ export default function Filters({
 					) : null}
 				</AnimatePresence>
 			</div>
-
-			{tags.map(t => (
-				<div
-					key={t}
-					className="flex items-center gap-2 shadow-md xs:text-xs sm:text-sm xs:py-2 sm:py-3 xs:px-3 sm:px-4 font-montserrat-regular bg-slate-200">
-					<Image
-						title={t[0]!.toUpperCase() + t.slice(1)}
-						className="inline-block"
-						src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
-						alt={t + " icon"}
-						width={16}
-						height={16}
-					/>
-					{t[0]!.toUpperCase() + t.slice(1)}
-					<Link href={getFilterLink(tags.filter(t_ => t !== t_))}>
-						<Image
-							className="ml-1 cursor-pointer hover:scale-105"
-							src="/assets/images/close.svg"
-							alt="Close"
-							width={16}
-							height={16}
-						/>
-					</Link>
-				</div>
-			))}
 		</div>
 	)
 }
