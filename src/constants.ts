@@ -27,6 +27,7 @@ export const TAG_CATEGORIES: [string, string[]][] = [
 			"javascript",
 			"python",
 			"nodejs",
+			"bunjs",
 			"dart",
 			"solidity",
 			"kotlin",
@@ -77,5 +78,18 @@ export const TAG_CATEGORIES: [string, string[]][] = [
 			"iotcore",
 		],
 	],
-	["DevOps Tools", ["phpunit", "jest", "cypress", "docker", "githubactions", "githubpages"]],
+	[
+		"DevOps Tools",
+		[
+			"phpunit",
+			"jest",
+			"cypress",
+			"docker",
+			"githubactions",
+			"githubpages",
+			"npm",
+			"cargo",
+			"notion",
+		],
+	],
 ]
