@@ -63,21 +63,18 @@ export default function Query({
 		setSelectedTags(tags)
 	}, [tags])
 
-	const getFilterLink = (tags: string[]) => {
-		const search = new URLSearchParams(location.search)
+	const getLink = ({
+		tags,
+		order,
+		orderBy,
+	}: {
+		tags: string[]
+		order: string
+		orderBy: string
+	}) => {
+		const search = new URLSearchParams()
 
-		if (tags.length) {
-			search.set("tags", tags.join(","))
-		} else {
-			search.delete("tags")
-		}
-
-		return "/projects?" + (search + "").replaceAll("%2C", ",")
-	}
-
-	const getSortLink = (order: string, orderBy: string) => {
-		const search = new URLSearchParams(location.search)
-
+		search.set("tags", tags.join(","))
 		search.set("orderBy", orderBy)
 		search.set("order", order)
 
@@ -108,7 +105,7 @@ export default function Query({
 
 				<div className="flex">
 					<Link
-						href={getSortLink(order, "date")}
+						href={getLink({ tags, order, orderBy: "date" })}
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200",
 							orderBy === "date" ? "bg-primary-400" : "bg-slate-200",
@@ -123,7 +120,7 @@ export default function Query({
 					</Link>
 
 					<Link
-						href={getSortLink(order, "title")}
+						href={getLink({ tags, order, orderBy: "title" })}
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200",
 							orderBy === "title" ? "bg-primary-400" : "bg-slate-200",
@@ -140,7 +137,7 @@ export default function Query({
 
 				<div className="flex">
 					<Link
-						href={getSortLink("asc", orderBy)}
+						href={getLink({ tags, order: "asc", orderBy })}
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200",
 							order === "asc" ? "bg-primary-400" : "bg-slate-200",
@@ -155,7 +152,7 @@ export default function Query({
 					</Link>
 
 					<Link
-						href={getSortLink("desc", orderBy)}
+						href={getLink({ tags, order: "desc", orderBy })}
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200",
 							order === "desc" ? "bg-primary-400" : "bg-slate-200",
@@ -185,7 +182,7 @@ export default function Query({
 							height={16}
 						/>
 						{t[0]!.toUpperCase() + t.slice(1)}
-						<Link href={getFilterLink(tags.filter(t_ => t !== t_))}>
+						<Link href={getLink({ tags: tags.filter(t_ => t !== t_), order, orderBy })}>
 							<Image
 								className="ml-1 cursor-pointer hover:scale-105"
 								src="/assets/images/close.svg"
@@ -255,7 +252,7 @@ export default function Query({
 										Cancel
 									</button>
 									<Link
-										href={getFilterLink(selectedTags)}
+										href={getLink({ tags: selectedTags, order, orderBy })}
 										onClick={() => setIsOpen(false)}
 										className="block px-3 py-2 text-white xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 hover:shadow-primary-400 bg-primary-400">
 										Save
