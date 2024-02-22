@@ -23,7 +23,11 @@
 }
 
 * {
-	@apply box-border p-0 m-0 text-black transition-all duration-300;
+	@apply box-border p-0 m-0 text-black;
+}
+
+*:not(.framer) {
+	@apply transition-all duration-300;
 }
 
 *::-webkit-scrollbar {
