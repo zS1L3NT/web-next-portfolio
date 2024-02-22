@@ -1,15 +1,20 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import getProjects from "@/utils/getProjects"
+
 import Featured from "./Featured"
 import Footer from "./Footer"
 import Landing from "./Landing"
 import Other from "./Other"
 
 export default async function Page() {
+	const projects = await getProjects()
+
 	return (
 		<>
 			<Landing />
+
 			<main className="flex flex-col xs:my-8 sm:my-12 lg:my-16 xs:gap-8 sm:gap-12 lg:gap-16">
 				<section className="w-full bg-white">
 					<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
@@ -50,16 +55,23 @@ export default async function Page() {
 					</div>
 				</section>
 
-				<Featured names={["soundroid-v2", "web-formby", "rs-tauri-chess"]} />
+				<Featured
+					projects={projects.filter(p =>
+						["soundroid-v2", "web-formby", "rs-tauri-chess"].includes(p.title),
+					)}
+				/>
+
 				<Other
-					names={[
-						"ts-discord-soundroid",
-						"web-monetary",
-						"deskpower",
-						"web-react-statify",
-						"ts-npm-ytmusic-api",
-						"ts-discord-reminder",
-					]}
+					projects={projects.filter(p =>
+						[
+							"ts-discord-soundroid",
+							"web-monetary",
+							"deskpower",
+							"web-react-statify",
+							"ts-npm-ytmusic-api",
+							"ts-discord-reminder",
+						].includes(p.title),
+					)}
 				/>
 
 				<section className="w-100">
