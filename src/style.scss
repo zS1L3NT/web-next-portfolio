@@ -26,7 +26,7 @@
 	@apply box-border p-0 m-0 text-black;
 }
 
-*:not(.framer) {
+*:not(.no-transition) {
 	@apply transition-all duration-300;
 }
 
