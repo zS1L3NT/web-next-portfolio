@@ -5,8 +5,45 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
+import TagImage from "@/components/TagImage"
 import { HIDDEN_TAGS, TAG_CATEGORIES } from "@/constants"
 import cn from "@/utils/cn"
+
+const Checkbox = ({
+	tag,
+	checked,
+	onChange,
+}: {
+	tag: string
+	checked: boolean
+	onChange: () => void
+}) => {
+	return (
+		<label
+			key={tag}
+			htmlFor={tag + "-checkbox"}
+			className="flex items-center cursor-pointer">
+			<input
+				id={tag + "-checkbox"}
+				type="checkbox"
+				checked={checked}
+				onChange={onChange}
+				className="hidden"
+			/>
+			<div
+				className={cn(
+					"rounded mr-2 size-[18px] leading-[1.2] text-center text-white",
+					checked ? "bg-primary-400" : "bg-white",
+				)}>
+				&#10003;
+			</div>
+			<TagImage tag={tag} />
+			<p className="ml-2 xs:text-sm sm:text-base lg:text-md font-montserrat-regular">
+				{tag[0]!.toUpperCase() + tag.slice(1)}
+			</p>
+		</label>
+	)
+}
 
 export default function Filters({ tags, searchTags }: { tags: string[]; searchTags: string[] }) {
 	const [isOpen, setIsOpen] = useState(false)
@@ -72,40 +109,18 @@ export default function Filters({ tags, searchTags }: { tags: string[]; searchTa
 											</h1>
 											<div className="grid xs:gap-2 sm:gap-3 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
 												{[...tags].sort().map(t => (
-													<label
+													<Checkbox
 														key={t}
-														htmlFor={t + "-checkbox"}
-														className="flex items-center cursor-pointer">
-														<input
-															id={t + "-checkbox"}
-															type="checkbox"
-															checked={selectedTags.includes(t)}
-															onChange={() =>
-																setSelectedTags(st =>
-																	st.includes(t)
-																		? st.filter(
-																				tag => tag !== t,
-																			)
-																		: [...st, t],
-																)
-															}
-															className="w-4 h-4 rounded accent-primary-400"
-														/>
-														<Image
-															key={t}
-															title={
-																t[0]!.toUpperCase() + t.substring(1)
-															}
-															className="inline-block mx-2 xs:scale-75 sm:scale-90"
-															src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
-															alt={t + " icon"}
-															width={25}
-															height={25}
-														/>
-														<p className="xs:text-sm sm:text-base lg:text-md font-montserrat-regular">
-															{t[0]!.toUpperCase() + t.slice(1)}
-														</p>
-													</label>
+														tag={t}
+														checked={selectedTags.includes(t)}
+														onChange={() =>
+															setSelectedTags(st =>
+																st.includes(t)
+																	? st.filter(tag => tag !== t)
+																	: [...st, t],
+															)
+														}
+													/>
 												))}
 											</div>
 										</div>
