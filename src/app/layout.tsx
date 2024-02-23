@@ -2,7 +2,8 @@ import { Metadata } from "next"
 import dynamic from "next/dynamic"
 import { PropsWithChildren } from "react"
 
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next"
+import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next"
 
 import { Provider as PostHogProvider } from "./posthog"
 
@@ -16,7 +17,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
 			<body>
 				<PostHogProvider>
 					<PostHogPageView />
-					<SpeedInsights />
+					<VercelAnalytics />
+					<VercelSpeedInsights />
 					{children}
 				</PostHogProvider>
 			</body>
