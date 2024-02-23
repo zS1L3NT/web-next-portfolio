@@ -5,9 +5,11 @@ import TagImage from "@/components/TagImage"
 import cn from "@/utils/cn"
 import getProjects from "@/utils/getProjects"
 
+import Particles from "./Particles"
 import Typewriter from "./Typewriter"
 
-const baseSvgClass = "fill-white cursor-pointer hover:fill-primary-500 hover:scale-125"
+const svgClassName =
+	"fill-white cursor-pointer hover:fill-primary-500 hover:scale-125 pointer-events-auto"
 
 export default async function Page() {
 	const projects = await getProjects()
@@ -22,15 +24,17 @@ export default async function Page() {
 
 	return (
 		<>
-			<section className="w-full h-full bg-bgcolor">
-				<div className="flex items-center justify-center w-full h-full">
+			<section className="relative size-full bg-bgcolor">
+				<Particles />
+
+				<div className="absolute flex items-center justify-center pointer-events-none size-full">
 					<div className="text-center xs:mx-2 sm:mx-1">
 						<h1 className="text-white select-none xs:text-3xl sm:text-4xl md:text-6xl font-montserrat-regular">
 							Hello, I&apos;m <span className="text-primary-400">Zechariah Tan</span>
 						</h1>
 						<Typewriter />
 
-						<div className="flex items-center justify-center w-full h-full">
+						<div className="flex items-center justify-center size-full">
 							<div className="flex xs:mt-8 sm:mt-12 md:mt-16 w-fit">
 								<Link
 									className="z-0 block"
@@ -39,7 +43,7 @@ export default async function Page() {
 									rel="noreferrer">
 									<svg
 										className={cn(
-											baseSvgClass,
+											svgClassName,
 											"p-1 my-1 xs:mx-2 xs:w-12 xs:h-12 sm:mx-3 sm:w-14 sm:h-14 md:mx-4 md:w-16 md:h-16",
 										)}
 										viewBox="0 0 50 50">
@@ -53,7 +57,7 @@ export default async function Page() {
 									rel="noreferrer">
 									<svg
 										className={cn(
-											"fill-white cursor-pointer hover:fill-primary-500 hover:scale-125 ",
+											svgClassName,
 											"p-1 xs:mx-2 xs:w-14 xs:h-14 sm:mx-3 sm:w-16 sm:h-16 md:mx-4 md:w-18 md:h-18",
 										)}
 										viewBox="0 0 80 80">
@@ -67,7 +71,7 @@ export default async function Page() {
 									rel="noreferrer">
 									<svg
 										className={cn(
-											"fill-white cursor-pointer hover:fill-primary-500 hover:scale-125 ",
+											svgClassName,
 											"p-1 my-1 xs:mx-2 xs:w-12 xs:h-12 sm:mx-3 sm:w-14 sm:h-14 md:mx-4 md:w-16 md:h-16",
 										)}
 										viewBox="0 0 50 50">
