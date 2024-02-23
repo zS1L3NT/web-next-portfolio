@@ -5,19 +5,18 @@ import Link from "next/link"
 
 import TagImage from "@/components/TagImage"
 import { HIDDEN_TAGS, SPECIAL_TAGS } from "@/constants"
+import useQuery from "@/hooks/useQuery"
 import { Project } from "@/utils/getProjects"
 
 export default function Projects({
 	projects,
-	tags,
-	order,
-	orderBy,
+	projectsTags,
 }: {
 	projects: Project[]
-	tags: string[]
-	order: string
-	orderBy: string
+	projectsTags: string[]
 }) {
+	const { tags, order, orderBy } = useQuery(projectsTags)
+
 	return (
 		<div className="grid xs:gap-8 sm:gap-10 lg:gap-12 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 			<AnimatePresence>

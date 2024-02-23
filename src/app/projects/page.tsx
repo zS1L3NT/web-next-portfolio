@@ -1,18 +1,14 @@
 import Link from "next/link"
+import { Suspense } from "react"
 
 import getProjects from "@/utils/getProjects"
 
 import Projects from "./Projects"
 import Query from "./Query"
 
-export default async function Page({ searchParams }: { searchParams: Record<string, string> }) {
+export default async function Page() {
 	const projects = await getProjects()
 	const projectsTags = [...new Set(projects.flatMap(p => p.tags))]
-
-	const search = new URLSearchParams(searchParams)
-	const tags = (search.get("tags")?.split(",") ?? []).filter(t => projectsTags.includes(t))
-	const order = search.get("order") ?? "desc"
-	const orderBy = search.get("orderBy") ?? "date"
 
 	return (
 		<main className="container mx-auto xs:px-4 sm:px-6 xs:py-8 sm:py-12 lg:py-16">
@@ -26,19 +22,14 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
 				Projects
 			</h1>
 
-			<Query
-				projectsTags={projectsTags}
-				tags={tags}
-				order={order}
-				orderBy={orderBy}
-			/>
+			<Suspense>
+				<Query projectsTags={projectsTags} />
 
-			<Projects
-				projects={projects}
-				tags={tags}
-				order={order}
-				orderBy={orderBy}
-			/>
+				<Projects
+					projects={projects}
+					projectsTags={projectsTags}
+				/>
+			</Suspense>
 		</main>
 	)
 }

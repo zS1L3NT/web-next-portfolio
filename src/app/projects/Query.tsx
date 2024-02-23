@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 
 import TagImage from "@/components/TagImage"
 import { HIDDEN_TAGS, TAG_CATEGORIES } from "@/constants"
+import useQuery from "@/hooks/useQuery"
 import cn from "@/utils/cn"
 
 const Checkbox = ({
@@ -45,17 +46,9 @@ const Checkbox = ({
 	)
 }
 
-export default function Query({
-	projectsTags,
-	tags,
-	order,
-	orderBy,
-}: {
-	projectsTags: string[]
-	tags: string[]
-	order: string
-	orderBy: string
-}) {
+export default function Query({ projectsTags }: { projectsTags: string[] }) {
+	const { tags, order, orderBy } = useQuery(projectsTags)
+
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectedTags, setSelectedTags] = useState<string[]>(tags)
 
