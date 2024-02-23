@@ -1,4 +1,15 @@
-export const PNG_TAGS = ["worldskills", "octokit"]
+export const PARTICLES = {
+	SCREEN_WIDTH_DIVISOR: 8,
+	COLOR: "204, 214, 246",
+	OPACITY: 0.1,
+	MAX_SIZE: 3,
+	MAX_SPEED_X: 0.5,
+	MAX_SPEED_Y: 1,
+	MAX_NEIGHBOUR_DISTANCE: 200,
+	MAX_MOUSE_DISTANCE: 400,
+	NEIGHBOUR_LINE_OPACITY: 0.075,
+	MOUSE_LINE_OPACITY: 0.15,
+} as const
 
 export const HIDDEN_TAGS = [
 	"special",
@@ -29,6 +40,7 @@ export const TAG_CATEGORIES: [string, string[]][] = [
 			"javascript",
 			"python",
 			"nodejs",
+			"bunjs",
 			"dart",
 			"solidity",
 			"kotlin",
@@ -79,5 +91,18 @@ export const TAG_CATEGORIES: [string, string[]][] = [
 			"iotcore",
 		],
 	],
-	["DevOps Tools", ["phpunit", "jest", "cypress", "docker", "githubactions", "githubpages"]],
+	[
+		"DevOps Tools",
+		[
+			"phpunit",
+			"jest",
+			"cypress",
+			"docker",
+			"githubactions",
+			"githubpages",
+			"npm",
+			"cargo",
+			"notion",
+		],
+	],
 ]

@@ -1,8 +1,12 @@
+"use client"
+
 import { useEffect, useState } from "react"
+
+import cn from "@/utils/cn"
 
 const time = (ms: number) => new Promise(res => setTimeout(res, ms))
 
-const Typewriter = () => {
+export default function Typewriter() {
 	const [blink, setBlink] = useState(false)
 	const [message, setMessage] = useState("")
 
@@ -70,14 +74,12 @@ const Typewriter = () => {
 					</span>
 				))}
 				<div
-					className={
-						"text-white inline-block -ml-1" + (blink ? " animate-cursor-blink" : "")
-					}>
+					className={cn("text-white inline-block -ml-1", {
+						"animate-cursor-blink": blink,
+					})}>
 					|
 				</div>
 			</div>
 		</h1>
 	)
 }
-
-export default Typewriter

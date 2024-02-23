@@ -9,7 +9,7 @@
 		"allowSyntheticDefaultImports": true,
 
 		/** Project */
-		"rootDir": "src",
+		// "rootDir": "src",
 		"outDir": "dist",
 		"types": ["bun-types"],
 		"paths": {
@@ -38,8 +38,13 @@
 		"jsx": "preserve",
 		"skipLibCheck": true,
 		"isolatedModules": true,
-		"incremental": true
+		"incremental": true,
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
 	},
-	"include": ["next-env.d.ts", "src"],
+	"include": ["next-env.d.ts", "src", ".next/types/**/*.ts"],
 	"exclude": ["node_modules"]
 }
