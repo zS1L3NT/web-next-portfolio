@@ -47,8 +47,8 @@ export default function Particles() {
 			x: Math.random() * canvas.width,
 			y: Math.random() * canvas.height,
 			size: Math.random() * PARTICLES.MAX_SIZE,
-			speedX: Math.random() * (Math.random() > 0.5 ? 1 : -1) * PARTICLES.MAX_SPEED_X,
-			speedY: Math.random() * PARTICLES.MAX_SPEED_Y,
+			speedX: Math.random() ** 2 * (Math.random() > 0.5 ? 1 : -1) * PARTICLES.MAX_SPEED_X,
+			speedY: Math.random() ** 2 * PARTICLES.MAX_SPEED_Y,
 			neighbours: [],
 		}))
 
