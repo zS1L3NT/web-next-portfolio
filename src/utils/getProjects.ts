@@ -6,7 +6,16 @@ export type Project = {
 }
 
 export default async (): Promise<Project[]> => {
-	const time = new Date().toLocaleString("en-SG")
+	const time = new Date().toLocaleString("en-SG", {
+		timeZone: "Asia/Singapore",
+		day: "2-digit",
+		month: "short",
+		year: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit",
+		fractionalSecondDigits: 3,
+	})
 
 	console.time(`caching at "${time}" took`)
 	const projects = []
