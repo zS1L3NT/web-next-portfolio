@@ -33,8 +33,8 @@ export default function Particles() {
 			x: Math.floor(Math.random() * canvas.width),
 			y: Math.floor(Math.random() * canvas.height),
 			size: Math.random() * 3,
-			speedX: Math.random() * (Math.random() > 0.5 ? 0.8 : -0.8),
-			speedY: Math.random() * 1.2,
+			speedX: Math.random() * (Math.random() > 0.5 ? 0.4 : -0.4),
+			speedY: Math.random() * 0.8,
 			neighbours: [],
 		}))
 
