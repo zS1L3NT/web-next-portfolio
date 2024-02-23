@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { ElementRef, useEffect, useRef } from "react"
+import { ElementRef, useEffect, useRef, useState } from "react"
 import resolveConfig from "tailwindcss/resolveConfig"
 
 import { PARTICLES } from "@/constants"
@@ -22,6 +22,18 @@ const tailwind = resolveConfig(tailwindConfig)
 export default function Particles() {
 	const canvasRef = useRef<ElementRef<"canvas">>(null)
 
+	const [count, setCount] = useState(0)
+
+	useEffect(() => {
+		const onResize = () => {
+			setCount(document.body.clientWidth / PARTICLES.SCREEN_WIDTH_DIVISOR)
+		}
+
+		onResize()
+		window.addEventListener("resize", onResize)
+		return () => window.removeEventListener("resize", onResize)
+	}, [])
+
 	useEffect(() => {
 		const canvas = canvasRef.current
 		if (!canvas) return
@@ -31,7 +43,6 @@ export default function Particles() {
 		canvas.height = document.body.clientHeight
 
 		let mouse: { x: number; y: number } | null = null
-		const count = Math.floor(canvas.width / PARTICLES.SCREEN_WIDTH_DIVISOR)
 		const particles: Particle[] = Array.from({ length: count }).map(() => ({
 			x: Math.random() * canvas.width,
 			y: Math.random() * canvas.height,
@@ -96,7 +107,7 @@ export default function Particles() {
 				}
 			}
 
-			requestAnimationFrame(draw)
+			frameId = requestAnimationFrame(draw)
 		}
 
 		const onMouseMove = (e: MouseEvent) => {
@@ -107,16 +118,17 @@ export default function Particles() {
 			mouse = null
 		}
 
-		requestAnimationFrame(draw)
+		let frameId = requestAnimationFrame(draw)
 		canvas.addEventListener("mousemove", onMouseMove)
 		canvas.addEventListener("mouseleave", onMouseLeave)
 
 		return () => {
+			cancelAnimationFrame(frameId)
 			ctx.clearRect(0, 0, canvas.width, canvas.height)
 			canvas.removeEventListener("mousemove", onMouseMove)
 			canvas.removeEventListener("mouseleave", onMouseLeave)
 		}
-	}, [])
+	}, [count])
 
 	return (
 		<AnimatePresence>
