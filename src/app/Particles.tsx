@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion"
 import { ElementRef, useEffect, useRef } from "react"
 import resolveConfig from "tailwindcss/resolveConfig"
 
+import { PARTICLES } from "@/constants"
+
 import tailwindConfig from "../../tailwind.config"
 
 type Particle = {
@@ -29,12 +31,13 @@ export default function Particles() {
 		canvas.height = document.body.clientHeight
 
 		let mouse: { x: number; y: number } | null = null
-		const particles: Particle[] = Array.from({ length: 150 }).map(() => ({
-			x: Math.floor(Math.random() * canvas.width),
-			y: Math.floor(Math.random() * canvas.height),
-			size: Math.random() * 3,
-			speedX: Math.random() * (Math.random() > 0.5 ? 0.4 : -0.4),
-			speedY: Math.random() * 0.8,
+		const count = Math.floor(canvas.width / PARTICLES.SCREEN_WIDTH_DIVISOR)
+		const particles: Particle[] = Array.from({ length: count }).map(() => ({
+			x: Math.random() * canvas.width,
+			y: Math.random() * canvas.height,
+			size: Math.random() * PARTICLES.MAX_SIZE,
+			speedX: Math.random() * (Math.random() > 0.5 ? 1 : -1) * PARTICLES.MAX_SPEED_X,
+			speedY: Math.random() * PARTICLES.MAX_SPEED_Y,
 			neighbours: [],
 		}))
 
@@ -55,31 +58,37 @@ export default function Particles() {
 				ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
 			}
 
-			ctx.fillStyle = `rgb(204, 214, 246, 0.1)`
+			ctx.fillStyle = `rgb(${PARTICLES.COLOR}, ${PARTICLES.OPACITY})`
 			ctx.fill()
 
 			for (const p of particles) {
 				p.neighbours = particles.filter(
-					n => ((n.x - p.x) ** 2 + (n.y - p.y) ** 2) ** 0.5 < 200,
+					n =>
+						((n.x - p.x) ** 2 + (n.y - p.y) ** 2) ** 0.5 <
+						PARTICLES.MAX_NEIGHBOUR_DISTANCE,
 				)
 			}
 
 			for (const p of particles) {
 				if (mouse) {
 					const distance = ((mouse.x - p.x) ** 2 + (mouse.y - p.y) ** 2) ** 0.5
-					if (distance < 400) {
-						ctx.strokeStyle = `rgb(204, 214, 246, ${0.15 * (1 - distance / 400)})`
-						ctx.beginPath()
-						ctx.moveTo(p.x, p.y)
-						ctx.lineTo(mouse.x, mouse.y)
-						ctx.stroke()
-					}
+					const opacity =
+						PARTICLES.MOUSE_LINE_OPACITY * (1 - distance / PARTICLES.MAX_MOUSE_DISTANCE)
+
+					ctx.strokeStyle = `rgb(${PARTICLES.COLOR}, ${opacity})`
+					ctx.beginPath()
+					ctx.moveTo(p.x, p.y)
+					ctx.lineTo(mouse.x, mouse.y)
+					ctx.stroke()
 				}
 
 				for (const n of p.neighbours) {
 					const distance = ((n.x - p.x) ** 2 + (n.y - p.y) ** 2) ** 0.5
+					const opacity =
+						PARTICLES.NEIGHBOUR_LINE_OPACITY *
+						(1 - distance / PARTICLES.MAX_NEIGHBOUR_DISTANCE)
 
-					ctx.strokeStyle = `rgb(204, 214, 246, ${0.075 * (1 - distance / 200)})`
+					ctx.strokeStyle = `rgb(${PARTICLES.COLOR}, ${opacity})`
 					ctx.beginPath()
 					ctx.moveTo(p.x, p.y)
 					ctx.lineTo(n.x, n.y)
