@@ -60,8 +60,15 @@ export default function Particles() {
 				p.x += p.speedX
 				p.y += p.speedY
 
-				if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
-					p.x = Math.floor(Math.random() * canvas.width)
+				if (p.x < 0) {
+					p.x = canvas.width
+				}
+
+				if (p.x > canvas.width) {
+					p.x = 0
+				}
+
+				if (p.y > canvas.height) {
 					p.y = 0
 				}
 
