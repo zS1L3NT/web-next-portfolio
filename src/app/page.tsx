@@ -250,12 +250,14 @@ export default async function Page() {
 							<>
 								{"Last updated on "}
 								{date.toLocaleDateString("en-SG", {
+									timeZone: "Asia/Singapore",
 									day: "2-digit",
 									month: "long",
 									year: "numeric",
 								})}
 								{" at "}
 								{date.toLocaleTimeString("en-SG", {
+									timeZone: "Asia/Singapore",
 									hour: "2-digit",
 									minute: "2-digit",
 								})}
