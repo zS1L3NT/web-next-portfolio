@@ -17,7 +17,7 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
 	return (
 		<main className="container mx-auto xs:px-4 sm:px-6 xs:py-8 sm:py-12 lg:py-16">
 			<Link
-				href="/"
+				href="/#projects"
 				className="inline-block hover:scale-105 font-montserrat-regular xs:text-sm sm:text-base lg:text-md">
 				&larr; Home
 			</Link>

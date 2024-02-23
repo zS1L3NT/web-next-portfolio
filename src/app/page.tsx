@@ -175,7 +175,11 @@ export default async function Page() {
 					</div>
 				</section>
 
-				<section className="w-full bg-white">
+				<section className="relative w-full bg-white">
+					<div
+						id="projects"
+						className="absolute xs:-top-4 sm:-top-6 lg:-top-8"
+					/>
 					<h1 className="mx-auto text-center xs:text-3xl sm:text-4xl lg:text-5xl w-fit font-montserrat-bold">
 						Other Projects
 					</h1>
