@@ -3,10 +3,10 @@
 import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 
-import TagImage from "@/components/TagImage"
+import TagImage from "@/components/tag-image"
 import { HIDDEN_TAGS, SPECIAL_TAGS } from "@/constants"
-import useQuery from "@/hooks/useQuery"
-import type { Project } from "@/utils/getProjects"
+import useQuery from "@/hooks/use-query"
+import type { Project } from "@/utils/get-projects"
 
 export default function Projects({
 	projects,

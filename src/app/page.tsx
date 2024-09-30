@@ -1,12 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import TagImage from "@/components/TagImage"
+import TagImage from "@/components/tag-image"
 import cn from "@/utils/cn"
-import getProjects from "@/utils/getProjects"
+import getProjects from "@/utils/get-projects"
 
-import Particles from "./Particles"
-import Typewriter from "./Typewriter"
+import Particles from "./particles"
+import Typewriter from "./typewriter"
 
 const svgClassName =
 	"fill-white cursor-pointer hover:fill-primary-500 hover:scale-125 pointer-events-auto"

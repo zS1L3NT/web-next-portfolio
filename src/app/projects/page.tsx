@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { Suspense } from "react"
 
-import getProjects from "@/utils/getProjects"
+import getProjects from "@/utils/get-projects"
 
-import Projects from "./Projects"
-import Query from "./Query"
+import Projects from "./projects"
+import Query from "./query"
 
 export default async function Page() {
 	const projects = await getProjects()

@@ -5,9 +5,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
-import TagImage from "@/components/TagImage"
+import TagImage from "@/components/tag-image"
 import { HIDDEN_TAGS, TAG_CATEGORIES } from "@/constants"
-import useQuery from "@/hooks/useQuery"
+import useQuery from "@/hooks/use-query"
 import cn from "@/utils/cn"
 
 const Checkbox = ({
