@@ -30,11 +30,14 @@ export default async (): Promise<Project[]> => {
 			)
 				.then(res => res.json())
 				.then(projects =>
-					projects.map((p: any) => ({
-						title: p.name,
-						description: p.description || "",
-						tags: (p.topics || []) as string[],
-						updated: new Date(p.pushed_at).getTime(),
+					projects.map((p: object) => ({
+						title: "name" in p ? p.name : "",
+						description: "description" in p ? p.description : "",
+						tags: "topics" in p && Array.isArray(p.topics) ? p.topics : [],
+						updated:
+							"pushed_at" in p && typeof p.pushed_at === "string"
+								? new Date(p.pushed_at).getTime()
+								: new Date().getTime(),
 					})),
 				)),
 		)

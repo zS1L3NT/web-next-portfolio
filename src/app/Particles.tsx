@@ -1,7 +1,7 @@
 "use client"
 
 import { AnimatePresence, motion } from "framer-motion"
-import { ElementRef, useEffect, useRef, useState } from "react"
+import { type ElementRef, useEffect, useRef, useState } from "react"
 import resolveConfig from "tailwindcss/resolveConfig"
 
 import { PARTICLES } from "@/constants"
@@ -38,7 +38,9 @@ export default function Particles() {
 		const canvas = canvasRef.current
 		if (!canvas) return
 
-		const ctx = canvas.getContext("2d")!
+		const ctx = canvas.getContext("2d")
+		if (!ctx) return
+
 		canvas.width = document.body.clientWidth
 		canvas.height = document.body.clientHeight
 

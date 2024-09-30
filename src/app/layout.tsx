@@ -1,6 +1,6 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import dynamic from "next/dynamic"
-import { PropsWithChildren } from "react"
+import type { PropsWithChildren } from "react"
 
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next"
 import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next"

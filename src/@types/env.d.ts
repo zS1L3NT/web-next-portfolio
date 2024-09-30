@@ -1,4 +1,4 @@
-declare module NodeJS {
+declare namespace NodeJS {
 	interface ProcessEnv {
 		readonly GITHUB_TOKEN: string
 		readonly NEXT_PUBLIC_POSTHOG_KEY: string

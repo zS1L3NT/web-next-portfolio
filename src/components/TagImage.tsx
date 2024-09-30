@@ -11,10 +11,10 @@ export default function TagName({ tag }: { tag: string }) {
 	return (
 		<Image
 			key={tag}
-			title={tag[0]!.toUpperCase() + tag.substring(1)}
+			title={tag[0]?.toUpperCase() + tag.substring(1)}
 			className={cn("inline-block xs:scale-75 sm:scale-90", error ? "opacity-20" : "")}
 			src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${error ? "unknown" : tag}.svg`}
-			alt={tag + " icon"}
+			alt={`${tag} icon`}
 			width={25}
 			height={25}
 			onError={() => setError(true)}

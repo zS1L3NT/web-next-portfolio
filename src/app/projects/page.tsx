@@ -14,7 +14,8 @@ export default async function Page() {
 		<main className="container mx-auto xs:px-4 sm:px-6 xs:py-8 sm:py-12 lg:py-16">
 			<Link
 				href="/#projects"
-				className="inline-block hover:scale-105 font-montserrat-regular xs:text-sm sm:text-base lg:text-md">
+				className="inline-block hover:scale-105 font-montserrat-regular xs:text-sm sm:text-base lg:text-md"
+			>
 				&larr; Home
 			</Link>
 
@@ -25,10 +26,7 @@ export default async function Page() {
 			<Suspense>
 				<Query projectsTags={projectsTags} />
 
-				<Projects
-					projects={projects}
-					projectsTags={projectsTags}
-				/>
+				<Projects projects={projects} projectsTags={projectsTags} />
 			</Suspense>
 		</main>
 	)

@@ -6,7 +6,7 @@ import Link from "next/link"
 import TagImage from "@/components/TagImage"
 import { HIDDEN_TAGS, SPECIAL_TAGS } from "@/constants"
 import useQuery from "@/hooks/useQuery"
-import { Project } from "@/utils/getProjects"
+import type { Project } from "@/utils/getProjects"
 
 export default function Projects({
 	projects,
@@ -39,11 +39,13 @@ export default function Projects({
 							animate={{ opacity: 1 }}
 							whileHover={{ scale: 1.05 }}
 							exit={{ opacity: 0 }}
-							className="flex flex-col justify-between h-full gap-4 transition-shadow shadow-md no-transition shadow-slate-100 bg-slate-100 hover:shadow-slate-300">
+							className="flex flex-col justify-between h-full gap-4 transition-shadow shadow-md no-transition shadow-slate-100 bg-slate-100 hover:shadow-slate-300"
+						>
 							<Link
 								href={`https://github.com/zS1L3NT/${project.title}`}
 								target="_blank"
-								className="flex flex-col justify-between gap-4 xs:p-4 sm:p-5 lg:p-6 size-full">
+								className="flex flex-col justify-between gap-4 xs:p-4 sm:p-5 lg:p-6 size-full"
+							>
 								<div>
 									<h1 className="xs:text-md sm:text-lg lg:text-xl font-montserrat-bold">
 										{project.title}
@@ -52,7 +54,8 @@ export default function Projects({
 												<span
 													key={tag}
 													title={message}
-													className="inline-block ms-1 hover:scale-125">
+													className="inline-block ms-1 hover:scale-125"
+												>
 													{emoji}
 												</span>
 											),
@@ -66,10 +69,7 @@ export default function Projects({
 									{project.tags
 										.filter(t => !HIDDEN_TAGS.includes(t))
 										.map(t => (
-											<TagImage
-												key={t}
-												tag={t}
-											/>
+											<TagImage key={t} tag={t} />
 										))}
 								</div>
 							</Link>

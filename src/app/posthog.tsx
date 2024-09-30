@@ -2,11 +2,11 @@
 
 import { usePathname, useSearchParams } from "next/navigation"
 import posthog from "posthog-js"
-import { PostHogProvider as PostHogProvider, usePostHog } from "posthog-js/react"
-import { PropsWithChildren, useEffect } from "react"
+import { PostHogProvider, usePostHog } from "posthog-js/react"
+import { type PropsWithChildren, useEffect } from "react"
 
 if (typeof window !== "undefined") {
-	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+	posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
 		api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
 	})
 }
@@ -24,7 +24,7 @@ export default function PageView(): null {
 		if (pathname && posthog) {
 			let url = window.origin + pathname
 			if (searchParams.toString()) {
-				url = url + `?${searchParams.toString()}`
+				url = `${url}?${searchParams.toString()}`
 			}
 
 			posthog.capture("$pageview", {

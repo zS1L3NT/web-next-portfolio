@@ -14,7 +14,7 @@ export default function Typewriter() {
 		const words = [
 			"WorldSkillsSG WebTech Winner",
 			"Full Stack Web Developer",
-			"Android App Developer"
+			"Android App Developer",
 		]
 
 		let cancelled = false
@@ -29,7 +29,7 @@ export default function Typewriter() {
 
 			while (!cancelled) {
 				for (const word of words) {
-					for (const letter of word + " ") {
+					for (const letter of `${word} `) {
 						setMessage(message => message + letter)
 						await time(40)
 						if (cancelled) return
@@ -40,8 +40,7 @@ export default function Typewriter() {
 					if (cancelled) return
 					setBlink(false)
 
-					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					for (const _ of word + " ") {
+					for (const _ of `${word} `) {
 						setMessage(message => message.slice(0, -1))
 						await time(20)
 						if (cancelled) return
@@ -66,16 +65,15 @@ export default function Typewriter() {
 		<h1 className="flex mx-auto text-white select-none sm:mt-2 md:mt-4 xs:text-3xl sm:text-4xl md:text-6xl w-fit font-montserrat-regular">
 			<div>
 				{message.split("").map((letter, i) => (
-					<span
-						key={i}
-						className="text-white">
+					<span key={`${letter}${i}`} className="text-white">
 						{letter}
 					</span>
 				))}
 				<div
 					className={cn("text-white inline-block -ml-1", {
 						"animate-cursor-blink": blink,
-					})}>
+					})}
+				>
 					|
 				</div>
 			</div>

@@ -27,51 +27,51 @@ module.exports = {
 					700: "#0089c6",
 					800: "#0078b2",
 					900: "#005892",
-				}
+				},
 			},
 			spacing: {
-				18: "4.5rem"
+				18: "4.5rem",
 			},
 			keyframes: {
 				"cursor-blink": {
 					"from, to": {
-						color: "transparent"
+						color: "transparent",
 					},
 					"50%": {
-						color: "white"
-					}
+						color: "white",
+					},
 				},
 				"mouse-scroll": {
 					from: {
-						transform: "translateY(10px)"
+						transform: "translateY(10px)",
 					},
 					to: {
-						transform: "translateY(20px)"
-					}
-				}
+						transform: "translateY(20px)",
+					},
+				},
 			},
 			animation: {
 				"cursor-blink": "cursor-blink 1s infinite",
-				"roll": "mouse-scroll 0.8s cubic-bezier(.7,0,.3,1) infinite alternate",
-				"roll-shadow": "mouse-scroll 0.8s cubic-bezier(.7,0,.3,1) 80ms infinite alternate"
+				roll: "mouse-scroll 0.8s cubic-bezier(.7,0,.3,1) infinite alternate",
+				"roll-shadow": "mouse-scroll 0.8s cubic-bezier(.7,0,.3,1) 80ms infinite alternate",
 			},
 			flex: {
-				"2": "2 1 0%"
-			}
+				2: "2 1 0%",
+			},
 		},
 		fontFamily: {
 			"montserrat-bold": "Montserrat-Bold",
 			"montserrat-regular": "Montserrat-Regular",
 			"roboto-light": "Roboto-Light",
-			"robotomono-regular": "RobotoMono-Regular"
+			"robotomono-regular": "RobotoMono-Regular",
 		},
 		screens: {
 			xs: { max: "575px" },
 			sm: { min: "576px" },
 			md: { min: "768px" },
 			lg: { min: "1024px" },
-			xl: { min: "1280px" }
-		}
+			xl: { min: "1280px" },
+		},
 	},
-	plugins: []
+	plugins: [],
 }

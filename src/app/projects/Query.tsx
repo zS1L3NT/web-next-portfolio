@@ -20,12 +20,9 @@ const Checkbox = ({
 	onChange: () => void
 }) => {
 	return (
-		<label
-			key={tag}
-			htmlFor={tag + "-checkbox"}
-			className="flex items-center cursor-pointer">
+		<label key={tag} htmlFor={`${tag}-checkbox`} className="flex items-center cursor-pointer">
 			<input
-				id={tag + "-checkbox"}
+				id={`${tag}-checkbox`}
 				type="checkbox"
 				checked={checked}
 				onChange={onChange}
@@ -35,12 +32,13 @@ const Checkbox = ({
 				className={cn(
 					"rounded mr-2 size-[18px] leading-[1.2] text-center text-white",
 					checked ? "bg-primary-400" : "bg-white",
-				)}>
+				)}
+			>
 				&#10003;
 			</div>
 			<TagImage tag={tag} />
 			<p className="ml-2 xs:text-sm sm:text-base lg:text-md font-montserrat-regular">
-				{tag[0]!.toUpperCase() + tag.slice(1)}
+				{tag[0]?.toUpperCase() + tag.slice(1)}
 			</p>
 		</label>
 	)
@@ -71,14 +69,11 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 		search.set("orderBy", orderBy)
 		search.set("order", order)
 
-		return "/projects?" + (search + "").replaceAll("%2C", ",")
+		return `/projects?${(`${search}`).replaceAll("%2C", ",")}`
 	}
 
 	const OTHER_TAGS = projectsTags.filter(
-		t =>
-			!TAG_CATEGORIES.map(c => c[1])
-				.flat()
-				.includes(t) && !HIDDEN_TAGS.includes(t),
+		t => !TAG_CATEGORIES.flatMap(c => c[1]).includes(t) && !HIDDEN_TAGS.includes(t),
 	)
 
 	return (
@@ -87,13 +82,9 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 				<button
 					className="shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200"
 					type="button"
-					onClick={() => setIsOpen(true)}>
-					<Image
-						src="/assets/images/filter.svg"
-						alt="Filter"
-						width={20}
-						height={20}
-					/>
+					onClick={() => setIsOpen(true)}
+				>
+					<Image src="/assets/images/filter.svg" alt="Filter" width={20} height={20} />
 				</button>
 
 				<div className="flex">
@@ -102,7 +93,8 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200",
 							orderBy === "date" ? "bg-primary-400" : "bg-slate-200",
-						)}>
+						)}
+					>
 						<Image
 							src="/assets/images/sort-date.svg"
 							alt="Filter"
@@ -117,7 +109,8 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200",
 							orderBy === "title" ? "bg-primary-400" : "bg-slate-200",
-						)}>
+						)}
+					>
 						<Image
 							src="/assets/images/sort-title.svg"
 							alt="Filter"
@@ -134,12 +127,14 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200",
 							order === "asc" ? "bg-primary-400" : "bg-slate-200",
-						)}>
+						)}
+					>
 						<p
 							className={cn(
 								"xs:text-sm sm:text-base lg:text-md font-montserrat-regular",
 								order === "asc" ? "text-white" : "",
-							)}>
+							)}
+						>
 							Ascending
 						</p>
 					</Link>
@@ -149,12 +144,14 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 						className={cn(
 							"shadow-md cursor-pointer hover:scale-105 xs:p-2 sm:p-3 hover:shadow-slate-300 shadow-slate-200 bg-slate-200",
 							order === "desc" ? "bg-primary-400" : "bg-slate-200",
-						)}>
+						)}
+					>
 						<p
 							className={cn(
 								"xs:text-sm sm:text-base lg:text-md font-montserrat-regular",
 								order === "desc" ? "text-white" : "",
-							)}>
+							)}
+						>
 							Descending
 						</p>
 					</Link>
@@ -165,16 +162,17 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 				{tags.map(t => (
 					<div
 						key={t}
-						className="flex items-center gap-2 shadow-md xs:text-xs sm:text-sm xs:py-2 sm:py-3 xs:px-3 sm:px-4 font-montserrat-regular bg-slate-200">
+						className="flex items-center gap-2 shadow-md xs:text-xs sm:text-sm xs:py-2 sm:py-3 xs:px-3 sm:px-4 font-montserrat-regular bg-slate-200"
+					>
 						<Image
-							title={t[0]!.toUpperCase() + t.slice(1)}
+							title={t[0]?.toUpperCase() + t.slice(1)}
 							className="inline-block"
 							src={`https://res.cloudinary.com/zs1l3nt/image/upload/icons/${t}.svg`}
-							alt={t + " icon"}
+							alt={`${t} icon`}
 							width={16}
 							height={16}
 						/>
-						{t[0]!.toUpperCase() + t.slice(1)}
+						{t[0]?.toUpperCase() + t.slice(1)}
 						<Link href={getLink({ tags: tags.filter(t_ => t !== t_), order, orderBy })}>
 							<Image
 								className="ml-1 cursor-pointer hover:scale-105"
@@ -192,7 +190,8 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 				className={cn(
 					"fixed inset-0 backdrop-brightness-75 backdrop-blur-sm size-full",
 					isOpen ? "opacity-100 z-[1000]" : "opacity-0 -z-[1]",
-				)}>
+				)}
+			>
 				<AnimatePresence>
 					{isOpen ? (
 						<motion.div
@@ -200,10 +199,13 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 							animate={{ y: 0 }}
 							exit={{ y: -20 }}
 							className="size-full xs:p-4 sm:p-6 md:p-8 no-transition"
-							onClick={() => setIsOpen(false)}>
+							onClick={() => setIsOpen(false)}
+						>
 							<div
 								className="flex flex-col max-w-3xl mx-auto shadow-md bg-slate-200 size-full xs:p-4 sm:p-5 lg:p-6"
-								onClick={e => e.stopPropagation()}>
+								onClick={e => e.stopPropagation()}
+								onKeyDown={e => e.stopPropagation()}
+							>
 								<h1 className="xs:text-xl sm:text-2xl lg:text-3xl w-fit font-montserrat-bold">
 									Filters
 								</h1>
@@ -240,14 +242,17 @@ export default function Query({ projectsTags }: { projectsTags: string[] }) {
 
 								<div className="flex justify-end gap-4 px-4 mt-6">
 									<button
+										type="button"
+										className="block px-3 py-2 border text-primary-400 xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 border-primary-400"
 										onClick={() => setIsOpen(false)}
-										className="block px-3 py-2 border text-primary-400 xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 border-primary-400">
+									>
 										Cancel
 									</button>
 									<Link
 										href={getLink({ tags: selectedTags, order, orderBy })}
 										onClick={() => setIsOpen(false)}
-										className="block px-3 py-2 text-white xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 hover:shadow-primary-400 bg-primary-400">
+										className="block px-3 py-2 text-white xs:text-sm sm:text-base lg:text-md font-montserrat-regular hover:scale-105 hover:shadow-primary-400 bg-primary-400"
+									>
 										Save
 									</Link>
 								</div>
