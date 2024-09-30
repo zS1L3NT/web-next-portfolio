@@ -12,7 +12,7 @@ export default function Typewriter() {
 
 	useEffect(() => {
 		const words = [
-			"WorldSkills Bronze Medalist",
+			"WorldSkills Bronze Medallist",
 			"Diploma Course Valedictorian",
 			"Full Stack Web Developer",
 			"DevOps & Cloud Engineer"
