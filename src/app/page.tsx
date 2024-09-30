@@ -113,26 +113,25 @@ export default async function Page() {
 						/>
 						<div className="flex flex-col gap-4 flex-2 xs:px-6 sm:px-10 lg:px-0 font-montserrat-regular xs:text-sm md:text-lg">
 							<p>
-								Hello! My name is Zechariah, and I am a React, TypeScript and Rust
-								Developer from Singapore. I enjoy doing Full-Stack Web Development,
-								App Development and solving programming problems. I really enjoy
-								taking on side-projects that I know I can definitely learn from or
-								help me fix real life issues that I encounter.
+								Hello! My name is Zechariah, and I'm a Web Developer from Singapore.
+								I specialize in Full-Stack Development and DevOps, and I love
+								solving programming challenges. I also enjoy working on side
+								projects, especially those that help me learn new skills or address
+								real-world problems.
 							</p>
 							<p>
-								Currently, I am a CSIT Diploma Scholar in Temasek Polytechnic (TP),
-								Information Technology, Year 3. In TP, I am a World Skills Web
-								Technologies competitor, so I often have to go far beyond my school
-								curriculum to learn other technologies and frameworks to be
-								competent in my skill trade.
+								I competed in the 2024 WorldSkills Championship in Lyon, France,
+								where I won a Bronze Medal representing Singapore. Preparing for
+								this competition pushed me to master a broad range of tools in the
+								Web Development space, which was both intellectually demanding and
+								rewarding.
 							</p>
 							<p>
-								Outside schoolwork, I am usually only either watching KDramas or
-								working on a new side project that I have in mind. Most of my side
-								projects are build using TypeScript or Rust, but I also do enjoy
-								trying out new technologies in the web development space. I
-								wouldn&apos;t mind doing mobile app development using Flutter, that
-								is if I find the project interesting.
+								Outside schoolwork, I am usually either watching Korean Dramas or
+								working on a side project. Most of the side projects I build use
+								either TypeScript or Rust as they are the languages I am most
+								comfortable using. I occasionally do App Development using Flutter
+								and hope to find time to try out React Native one day.
 							</p>
 						</div>
 					</div>
@@ -195,7 +194,7 @@ export default async function Page() {
 									"ts-discord-soundroid",
 									"web-monetary",
 									"deskpower",
-									"web-react-statify",
+									"web-next-statify",
 									"ts-npm-ytmusic-api",
 									"ts-discord-reminder",
 								].includes(p.title),

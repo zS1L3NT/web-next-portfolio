@@ -12,9 +12,10 @@ export default function Typewriter() {
 
 	useEffect(() => {
 		const words = [
-			"WorldSkillsSG WebTech Winner",
+			"WorldSkills Bronze Medalist",
+			"Diploma Course Valedictorian",
 			"Full Stack Web Developer",
-			"Android App Developer",
+			"DevOps & Cloud Engineer"
 		]
 
 		let cancelled = false
